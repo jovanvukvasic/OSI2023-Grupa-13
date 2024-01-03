@@ -2,12 +2,12 @@
 
 void Korisnik::registrujSe()
 {
-    std::cout << " \n [1] Vlasnik nekretnine,\n [2] Kupac nekretnine,\n [3] Prodavac nekretnine,\n [4] Radnik agencije,\n [5] Odrzavatelj,\n";
+    std::cout << " \n [1] Vlasnik nekretnine,\n [2] Kupac nekretnine,\n [3] Iznajmljivac nekretnine,\n [4] Radnik agencije,\n [5] Odrzavatelj,\n";
     std::cout<<"\n> Odaberite tip profila: ";
-    std::getline(std::cin, tipProfila);
+    std::cin>>tipProfila;
     int br=0;
 
-    if (tipProfila == "1" || tipProfila == "[1] Vlasnik profila" || tipProfila == "[1]" || tipProfila == "Vlasnik nekretnine" || tipProfila == "vlasnik nekretnine" || tipProfila == "Vlasnik" || tipProfila == "vlasnik")
+    if (tipProfila == "1" || tipProfila == "[1] Vlasnik nekretnine" || tipProfila == "[1]" || tipProfila == "Vlasnik nekretnine" || tipProfila == "vlasnik nekretnine" || tipProfila == "Vlasnik" || tipProfila == "vlasnik")
     {
         tipProfila = "1";
     }
@@ -17,7 +17,7 @@ void Korisnik::registrujSe()
         tipProfila = "2";
     }
 
-    else if (tipProfila == "3" || tipProfila == "[3] Prodavac nekretnine" || tipProfila == "[3]" || tipProfila == "Prodavac nekretnine" || tipProfila == "prodavac nekretnine" || tipProfila == "Prodavac" || tipProfila == "prodavac")
+    else if (tipProfila == "3" || tipProfila == "[3] Iznajmljivac nekretnine" || tipProfila == "[3]" || tipProfila == "Iznajmljivac nekretnine" || tipProfila == "Iznajmljivac nekretnine" || tipProfila == "Iznajmljivac" || tipProfila == "iznajmljivac")
     {
         tipProfila = "3";
     }
