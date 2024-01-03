@@ -24,7 +24,11 @@ public:
     }
 
     void registrujSe();
+    void prijaviSe();
+    void prikazProfila();
+    void odjava();
 
+    
 private:
     bool proveriPostojanjeKorisnickogImena() const;
 };
