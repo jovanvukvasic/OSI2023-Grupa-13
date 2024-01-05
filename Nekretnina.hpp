@@ -29,4 +29,9 @@ public:
                   << "\nDostupnost: " << (dostupnost ? "Dostupno" : "Nije dostupno")
                   << std::endl;
     }
+
+    //ova metoda proverava da li je nekretnina za odrzavanje
+    bool jePotrebnoOdrzavanje() const {
+        return opis.find("održavanje") != std::string::npos;
+    }
 };
