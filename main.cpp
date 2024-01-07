@@ -4,7 +4,7 @@ int main() {
     std::string ind;
     std::cout<<"\n~ Aplikacija za rad sa nekretninama ~\n";
     std::cout<<"\nDostupne opcije: [REGISTRACIJA], [PRIJAVA]\n\n";
-    
+
 
     /*TODO
         Dostupne nekretnine
@@ -21,7 +21,7 @@ int main() {
         }
 
     }
-    
+
 
 return 0;
 }
