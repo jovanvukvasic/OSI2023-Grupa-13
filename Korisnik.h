@@ -180,6 +180,7 @@ public:
     file << tipProfila << " " << korisnickoIme << " " << sifra << " " << ime << " " << prezime << " " << brojTelefona << " " << emailAdresa << "\n";
     file.close();
 }
+
 bool proveriPostojanjeKorisnickogImena() const
 {
     std::ifstream file("nalozi.txt");

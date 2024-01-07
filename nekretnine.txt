@@ -1,10 +1,10 @@
-1,Stan,Ulica Kralja Petra 13,65.5,2,Nov stan u centru grada sa terasom,80000,1
-2,Kuća,Zlatiborska 25,120,4,Prostrana kuća sa dvorištem i garažom,150000,1
-3,Poslovni prostor,Industrijska 3,210,0,Poslovni prostor u industrijskoj zoni,50000,1
-4,Stan,Ulica Cara Dušana 8,48,1,Stan idealan za studente,55000,1
-5,Kuća,Vojvođanska 122,180,5,Kuća sa pogledom na reku,200000,1
-6,Apartman,Ulica Laze Kostića 5,40,1,Apartman u blizini plaže,70000,1
-7,Stan,Bulevar Oslobođenja 88,72,3,Prostran i svetao stan,90000,1
-8,Vikendica,Fruškogorska 45,85,3,Vikendica u prirodi sa baštom,45000,1
-9,Poslovni prostor,Mihajla Pupina 10,150,0,Moderno opremljen prostor za kancelarije,120000,1
-10,Stan,Ulica Jovana Subotića 15,90,4,Stan u mirnom kraju sa parkom,100000,1
+1,Stan,Ulica Kralja Petra 13,marko,65.5,2,Nov stan u centru grada sa terasom,80000,1
+2,Kuća,Zlatiborska 25,marko,120,4,Prostrana kuća sa dvorištem i garažom,150000,1
+3,Poslovni prostor,Industrijska 3,marko,210,0,Poslovni prostor u industrijskoj zoni,50000,1
+4,Stan,Ulica Cara Dušana 8,marko,48,1,Stan idealan za studente,55000,1
+5,Kuća,Vojvođanska 122,marko,180,5,Kuća sa pogledom na reku,200000,1
+6,Apartman,Ulica Laze Kostića 5,marko,40,1,Apartman u blizini plaže,70000,1
+7,Stan,Bulevar Oslobođenja 88,marko,72,3,Prostran i svetao stan,90000,1
+8,Vikendica,Fruškogorska 45,marko,85,3,Vikendica u prirodi sa baštom,45000,1
+9,Poslovni prostor,Mihajla Pupina 10,marko,150,0,Moderno opremljen prostor za kancelarije,120000,1
+10,Stan,Ulica Jovana Subotića 15,marko,90,4,Stan u mirnom kraju sa parkom,100000,1

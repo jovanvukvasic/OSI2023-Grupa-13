@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Nekretnina.hpp"
 
+
 std::vector<Nekretnina> prikazDostupnihNekretnina() {
     std::vector<Nekretnina> nekretnine;
     std::ifstream file("nekretnine.txt");
@@ -16,7 +17,7 @@ std::vector<Nekretnina> prikazDostupnihNekretnina() {
     std::string line;
     while (std::getline(file, line)) {
         std::istringstream iss(line);
-        std::string id, tip, adresa, brojSobaStr, opis, dostupnostStr;
+        std::string id, tip, adresa, vlasnik, brojSobaStr, opis, dostupnostStr;
         double povrsina, cena;
         int brojSoba;
         bool dostupnost;
@@ -25,6 +26,7 @@ std::vector<Nekretnina> prikazDostupnihNekretnina() {
         std::getline(iss, id, ',');
         std::getline(iss, tip, ',');
         std::getline(iss, adresa, ',');
+        std::getline(iss, vlasnik, ',');
         iss >> povrsina;
         iss.ignore(); 
         iss >> brojSoba;
@@ -36,7 +38,7 @@ std::vector<Nekretnina> prikazDostupnihNekretnina() {
         dostupnost = dostupnostStr == "1";
 
         if (dostupnost) { 
-            Nekretnina nekretnina(id, tip, adresa, povrsina, brojSoba, opis, cena, dostupnost);
+            Nekretnina nekretnina(id, tip, adresa, vlasnik, povrsina, brojSoba, opis, cena, dostupnost);
             nekretnine.push_back(nekretnina);
         }
     }
@@ -44,3 +46,4 @@ std::vector<Nekretnina> prikazDostupnihNekretnina() {
     file.close();
     return nekretnine;
 }
+
