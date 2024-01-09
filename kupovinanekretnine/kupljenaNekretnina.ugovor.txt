@@ -1,0 +1,5 @@
+Ugovor o kupovini nekretnine
+
+Nekretnina: StanUCentru
+Kupac: ImePrezime1
+Cijena: 100000.000000 KM

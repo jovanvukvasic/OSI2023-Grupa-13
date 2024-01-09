@@ -1,0 +1,3 @@
+1 StanUCentru 100000
+2 KucaSVrtom 150000
+
