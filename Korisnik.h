@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <sstream>
 #include <conio.h>
 #include <fstream>
@@ -8,6 +8,43 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
+
+class Zadatak
+{
+private:
+    std::string naslov;
+    std::string opis;
+    bool zavrsen;
+
+public:
+    Zadatak(const std::string &naslov, const std::string &opis)
+        : naslov(naslov), opis(opis), zavrsen(false) {}
+    std::string getnaslov() const
+    {
+        return naslov;
+    }
+    bool getzavrsen() const
+    {
+        return zavrsen;
+    }
+    std::string getKomentar() const
+    {
+        return opis;
+    }
+    void setzavrsen(bool z)
+    {
+        this->zavrsen = z;
+    }
+    void setkomentar(const std::string &komentar)
+    {
+        this->opis = komentar;
+    }
+    void prikaziInformacije() const
+    {
+        // Prikazi informacije o zadatku
+    }
+};
 
 class Korisnik
 {
@@ -19,6 +56,7 @@ private:
     std::string prezime;
     std::string brojTelefona;
     std::string emailAdresa;
+    std::vector<Zadatak> listaZadataka;
 
 public:
     Korisnik()
@@ -276,7 +314,7 @@ public:
                 if (pr == "4")
                     std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA]....\n";
                 if (pr == "5")
-                    std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZADATAK], [ODJAVA]....\n";
+                    std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
 
                 while (ind2 != "ODJAVA")
                 {
@@ -297,15 +335,19 @@ public:
                     }
                     else if (ind2 == "REGISTROVANJE" && pr == "4")
                         registrovanje_ponude();
-                    else
+                  
+                    if (pr == "5")
+                    {
+                        if (ind2 == "AZURIRAJ")
+                            azurirajListu();
+                    }
+                    /*
+                        U ZAVISNOSTI OD PROFILA I DOSTUPNOSTI ISTOG, PRIKAZUJU SE OPCIJE KORISNICIMA
+                    */  else
                     {
                         if (ind2 != "ODJAVA")
                             std::cout << "\nTa opcija nije dostupna.\n";
                     }
-
-                    /*
-                        U ZAVISNOSTI OD PROFILA I DOSTUPNOSTI ISTOG, PRIKAZUJU SE OPCIJE KORISNICIMA
-                    */
                 }
                 return;
             }
@@ -326,4 +368,5 @@ public:
     int slanje_ponude();
     void registrovanje_ponude();
     void automatski_unos();
+    void azurirajListu();
 };

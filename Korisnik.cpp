@@ -135,3 +135,48 @@ void Korisnik::automatski_unos()
             datoteka<<tipProfila<<std::endl;
         }
 }
+
+  void Korisnik::azurirajListu(){
+         std::cout << "Izaberite zadatak koji želite ažurirati:" << std::endl;
+       int i=0;
+        while(i<listaZadataka.size()) {
+            std::cout << i + 1 << ". " << listaZadataka[i].getnaslov() << std::endl;
+            i++;
+        }
+        int izbor;
+        std::cout << "> ";
+        std::cin >> izbor;
+        if (izbor < 1 || izbor > i) {
+            std::cout << "Nevazeci unos." << std::endl;
+            return;
+        }
+        int izabran=izbor-1;
+        std::cout<<"Prikaz zadatka: "<<listaZadataka[izabran].getnaslov()<<std::endl;
+        
+        char zavrsen;
+        std::cout << "Da li je zadatak završen? (D/N): ";
+        std::cin >> zavrsen;
+        if (zavrsen == 'D' || zavrsen == 'd')
+        listaZadataka[izabran].setzavrsen(true);
+        else
+        listaZadataka[izabran].setzavrsen(false);
+
+        char zeliKomentar;
+        std::cout << "Želite li unijeti komentar? (D/N): ";
+        std::cin >> zeliKomentar;
+        std::string komentar;
+        if (zeliKomentar == 'D' || zeliKomentar == 'd') {
+            std::cout << "Unesite komentar: ";
+            std::cin.ignore();  
+            std::getline(std::cin, komentar);
+           listaZadataka[izabran].setkomentar(komentar);
+           
+        }
+        std::ofstream file("azurirane_liste.txt");
+    for (const auto& zadatak : listaZadataka) {
+        file << zadatak.getnaslov() << " " << zadatak.getKomentar() << " " << (zadatak.getzavrsen() ? "1" : "0") << "\n";
+    }
+    file.close();
+
+     }
+     
