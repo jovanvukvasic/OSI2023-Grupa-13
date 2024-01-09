@@ -8,14 +8,14 @@
 
 int main() {
     std::string ind;
-    Korisnik korisnik;
+   
 
     std::cout << "\n~ Aplikacija za rad sa nekretninama ~\n";
-    std::cout << "\nDostupne opcije: [REGISTRACIJA], [PRIJAVA], [IZLAZ]\n\n";
-
-    while (true) {
-        std::cout << "> ";
-        std::getline(std::cin, ind);
+    std::cout << "\nDostupne opcije: [REGISTRACIJA], [PRIJAVA], [KRAJ]\n\n";
+ Korisnik korisnik;
+    while (ind!="KRAJ") {
+        std::cout << "\n>";
+        std::cin>>ind;
 
         if (ind == "REGISTRACIJA") {
             korisnik.registrujSe();

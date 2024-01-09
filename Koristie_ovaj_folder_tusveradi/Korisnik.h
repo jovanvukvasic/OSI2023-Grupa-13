@@ -30,6 +30,7 @@ public:
     bool prijaviSe();
     void prikazProfila();
     void odjava();
+    void slanje_ponude();
 
     
 private:
