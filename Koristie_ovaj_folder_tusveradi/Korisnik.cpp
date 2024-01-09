@@ -1,6 +1,7 @@
 #include "Korisnik.h"
 #include "Nekretnina.hpp"
 #include "prikazDostupnihNekretnina.h"
+#include "listazadataka.cpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -75,11 +76,11 @@ bool Korisnik::prijaviSe()
             }
             else if (pr == "4")
             {
-                std::cout << "\nDostupne operacije radniku agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], ....\n";
+                std::cout << "\nDostupne operacije radniku agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE],[GENERISANJE_LISTE] ....\n";
             }
             else if (pr == "5")
             {
-                std::cout << "\nDostupne operacije odrzavatelju: [PRIKAZ], [ZADACI], [AZADATAK], ....\n";
+                std::cout << "\nDostupne operacije odrzavatelju: [PRIKAZ], [ZADACI], [AZURIRAJ], ....\n";
             }
 
             while (ind2 != "ODJAVA")
@@ -88,6 +89,17 @@ bool Korisnik::prijaviSe()
                 std::cin >> ind2;
                 if (ind2 == "SLANJE")
                     slanje_ponude();
+
+                    //jelena
+                if(ind2=="GENERISANJE_LISTE")
+                    generisiListuZad();
+               if(ind2=="AZURIRAJ")
+                    azurirajListu();
+                if(ind2=="ZADACI")
+                    prikaziOpcijeOdrzavanja();
+                    
+
+
                 if (ind2 == "PRIKAZ")
                 {
                     std::cout << "\nTrenutno dostupne nekretnine.\n";
