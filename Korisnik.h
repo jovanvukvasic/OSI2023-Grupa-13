@@ -255,11 +255,11 @@ bool proveriPostojanjeKorisnickogImena() const
 
             k.prikazProfila();
 
-            if(pr=="1")std::cout<<"\nDostupne operacije vlasniku: [PRIKAZ], [SLANJE], ....\n";
-            if(pr=="2")std::cout<<"\nDostupne operacije kupac: [PRIKAZ], [APLICIRANJE], ....\n";
-            if(pr=="3")std::cout<<"\nDostupne operacije iznajmljivac: [PRIKAZ], [APLICIRANJE], ....\n";
-            if(pr=="4")std::cout<<"\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE] ....\n";
-            if(pr=="5")std::cout<<"\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZADATAK] ....\n";
+            if(pr=="1")std::cout<<"\nDostupne operacije vlasniku: [PRIKAZ], [SLANJE], [ODJAVA] ....\n";
+            if(pr=="2")std::cout<<"\nDostupne operacije kupac: [PRIKAZ], [APLICIRANJE], [ODJAVA] ....\n";
+            if(pr=="3")std::cout<<"\nDostupne operacije iznajmljivac: [PRIKAZ], [APLICIRANJE], [ODJAVA] ....\n";
+            if(pr=="4")std::cout<<"\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA]....\n";
+            if(pr=="5")std::cout<<"\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZADATAK], [ODJAVA]....\n";
 
 
             while(ind2!="ODJAVA"){
@@ -269,9 +269,12 @@ bool proveriPostojanjeKorisnickogImena() const
                 std::cin>>ind2;
                 if(ind2=="PRIKAZ") std::cout<<"\nTrenutno dostupne nekretnine.\n";
                 else if(ind2=="PRIJAVA") std::cout<<"\nTrenutno ste vec prijavljeni.\n";
+                else if(ind2=="SLANJE" && pr=="1")
+                slanje_ponude();
                 else{
                     if(ind2!="ODJAVA")std::cout<<"\nTa opcija nije dostupna.\n";
                 }
+              
                 /*
                     U ZAVISNOSTI OD PROFILA I DOSTUPNOSTI ISTOG, PRIKAZUJU SE OPCIJE KORISNICIMA
                 */
@@ -291,5 +294,6 @@ bool proveriPostojanjeKorisnickogImena() const
 }
     void prikazProfila();
     void odjava();
+    void slanje_ponude();
 
 };
