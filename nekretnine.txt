@@ -13,3 +13,4 @@ Stan,Vidovdanska bb,Nevena,45,1,Garsonjera,47250
 Kuca,Save Madnica 18,Nevena,98,4,uca na dva sprata,105000
 Kuca,Milana Topica 11,Nevena,77,2,vosoban stan,94500
 Stan,Petra Pecije 10a,Nevena,80,2,vosoban stan,89250
+Kuca,Save Mandica,Nevena,100,4,uca na dva sprata,105000

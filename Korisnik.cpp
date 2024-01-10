@@ -88,7 +88,7 @@ void Korisnik::slanje_ponude()
     }
 }
 
-void Korisnik::registrovanje_ponude()
+void Korisnik::pregle_trenutnih_ponuda()
 {
     std::ifstream inputFile("poslate_ponude.txt"); // Zamenite "nekretnine.txt" sa imenom vaše datoteke
 
@@ -107,6 +107,10 @@ void Korisnik::registrovanje_ponude()
         redniBroj++;
     }
     inputFile.close();
+}
+void Korisnik::registrovanje_ponude()
+{
+    pregle_trenutnih_ponuda();
     int bp;
     std::cout << "Unesite broj ponude koju zelite registrovati: " << std::endl;
     std::cin >> bp;
@@ -121,7 +125,7 @@ void Korisnik::registrovanje_ponude()
         return;
     }
 
-    redniBroj = 1;
+    int redniBroj = 1;
     std::string novaLinija1;
 
     while (std::getline(inputFile2, novaLinija1))
@@ -293,3 +297,29 @@ void Korisnik::generisiListu()
 
     std::cout << "Generisana lista zadataka za nekretninu " << odabranaAdresa << " uspješno upisana u datoteku." << std::endl;
 }
+ 
+
+//TODO
+
+/*void Korisnik::upravljanje_ponudama()
+{
+    prikaziNekretnine();
+    std::string id;
+    std::cout << "Unesite id nekretnine koju zelite da obrisete: ";
+    std::cin >> id;
+    std::ifstream inputFile("nekretnine.txt"); // Zamenite "nekretnine.txt" sa imenom vaše datoteke
+
+    if (!inputFile.is_open())
+    {
+        std::cerr << "Nije moguće prikazati listu ponuda." << std::endl;
+    }
+
+    std::string line1;
+    std::string tmp;
+    while (std::getline(inputFile, line1))
+    {
+        std::cout << line1 << std::endl;
+        
+    }
+    inputFile.close();
+}*/

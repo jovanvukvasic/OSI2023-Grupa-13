@@ -80,5 +80,5 @@ public:
     void azurirajListu();
     void ucitajNekretnine();
     void generisiListu();
-    //void upravljanje_ponudama();
+    void pregle_trenutnih_ponuda();
 };
