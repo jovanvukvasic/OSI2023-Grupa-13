@@ -91,11 +91,13 @@ void Korisnik::prijaviSe(){
                     else if (ind2 == "REGISTROVANJE" && pr == "4")
                         registrovanje_ponude();
                   
-                    if (pr == "5")
+                    else if (pr == "5")
                     {
                         if (ind2 == "AZURIRAJ")
                             azurirajListu();
                     }
+                    else if (ind2 =="GENERISANJE" && pr == "4")
+                        generisiListu();
                     /*
                         U ZAVISNOSTI OD PROFILA I DOSTUPNOSTI ISTOG, PRIKAZUJU SE OPCIJE KORISNICIMA
                     */  else

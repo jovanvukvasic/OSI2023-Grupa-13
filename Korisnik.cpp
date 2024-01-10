@@ -1,4 +1,5 @@
 #include "Korisnik.h"
+#include "Nekretnina.hpp"
 
 int Korisnik::slanje_ponude()
 {
@@ -180,3 +181,96 @@ void Korisnik::automatski_unos()
 
      }
      
+    
+std::vector<Nekretnina> listaNekretnina;
+
+
+
+
+
+void Korisnik::ucitajNekretnine() {
+    std::ifstream file("nekretnine.txt");
+
+    if (!file.is_open()) {
+        std::cerr << "Greska pri otvaranju fajla nekretnine.txt" << std::endl;
+        return;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string id, tip, adresa, vlasnik, opis;
+        double povrsina, cena;
+        int brojSoba;
+        bool dostupnost;
+
+        
+        if (std::getline(iss, id, ',') >> tip >> adresa >> vlasnik >> povrsina >> brojSoba >> opis >> cena >> dostupnost) {
+            Nekretnina nekretnina(id, tip, adresa, vlasnik, povrsina, brojSoba, opis, cena, dostupnost);
+            listaNekretnina.push_back(nekretnina);
+        }
+    }
+    if (listaNekretnina.empty()) {
+    std::cout << "Nema dostupnih nekretnina." << std::endl;
+    return;
+}
+
+    file.close();
+}
+
+
+ void Korisnik::generisiListu()
+ {
+    ucitajNekretnine();
+    std::cout << "Dostupne nekretnine:" << std::endl;
+    for (const auto& nekretnina : listaNekretnina) {
+        std::cout << nekretnina.getAdresa() << std::endl;
+    }
+    std::vector<std::string> odabraneAdrese;
+     std::string odabranaAdresa;
+     while(listaNekretnina.size()){
+    std::cout << "Unesite adresu nekretnine za koju želite generisati listu zadataka: ";
+    std::cin.ignore();
+    std::getline(std::cin, odabranaAdresa);
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+     if (odabranaAdresa == "0" || odabranaAdresa.empty()) {
+            break;
+        }
+        bool adresaValidna = false;
+        for (const auto& nekretnina : listaNekretnina) {
+            if (nekretnina.getAdresa() == odabranaAdresa) {
+                adresaValidna = true;
+                break;
+            }
+        }
+        if (adresaValidna) {
+            odabraneAdrese.push_back(odabranaAdresa);
+        } else {
+            std::cout << "Nekretnina sa tom adresom nije pronađena. Molimo Vas da ponovite unos." << std::endl;
+        }
+    }
+        std::vector<Zadatak> listaZadataka;
+        std::cout << "Unesite zadatke za nekretninu: " << odabranaAdresa << std::endl;
+
+        std::string noviZadatak;
+        while (true) {
+            std::cout << "> ";
+            std::getline(std::cin, noviZadatak);
+
+            if (noviZadatak == "0") {
+                break;
+            }
+
+            Zadatak noviZad(odabranaAdresa, noviZadatak);
+            listaZadataka.push_back(noviZad);
+        }
+     
+    
+        std::ofstream file("generisane_liste.txt", std::ios::app);
+        for (const auto& zadatak : listaZadataka) {
+            file << odabranaAdresa << " " << zadatak.getnaslov() << " " << zadatak.getKomentar() << " " << (zadatak.getzavrsen() ? "1" : "0") << "\n";
+        }
+        file.close();
+
+        std::cout << "Generisana lista zadataka za nekretninu " << odabranaAdresa << " uspješno upisana u datoteku." << std::endl;
+    } 

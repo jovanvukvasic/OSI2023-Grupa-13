@@ -79,4 +79,6 @@ public:
     void registrovanje_ponude();
     void automatski_unos();
     void azurirajListu();
+    void ucitajNekretnine();
+    void generisiListu();
 };
