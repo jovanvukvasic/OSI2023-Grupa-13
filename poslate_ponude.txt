@@ -1,10 +1,2 @@
-Vidovdanska 98 4 Kuca Kuca na dva sprata 120000
-Nevena Peric 123456789 nenene@gmail.com
-Petra Pecije 45 1 Stan Grsonjera sa bakonom 675000
-Nevena Peric 123456789 nenene@gmail.com
-Mlade Bosne 78 3 Kuca Kuca na dva sprata 135000
-Nevena Peric 123456789 nenene@gmail.com
-Gradsika 100 5 Kuca Kuca na dva sprata 115500
-Nevena Peric 123456789 nenene@gmail.com
-   
-
+Kuca,Save Mandica,Nevena,100,4,uca na dva sprata,105000
+Stan,Petra Pecije 10a,Nevena,80,2,vosoban stan,89250

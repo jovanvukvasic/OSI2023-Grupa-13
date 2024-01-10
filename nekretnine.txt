@@ -8,3 +8,6 @@
 8,Vikendica,Fruškogorska 45,marko,85,3,Vikendica u prirodi sa baštom,45000,1
 9,Poslovni prostor,Mihajla Pupina 10,marko,150,0,Moderno opremljen prostor za kancelarije,120000,1
 10,Stan,Ulica Jovana Subotića 15,marko,90,4,Stan u mirnom kraju sa parkom,100000,1
+Kuca,Mlade Bosne 21,Nevena,110,4,uca sa bazenom,115500
+Stan,Vidovdanska bb,Nevena,45,1,Garsonjera,47250
+Kuca,Save Madnica 18,Nevena,98,4,uca na dva sprata,105000

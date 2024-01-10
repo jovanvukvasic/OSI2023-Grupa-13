@@ -85,8 +85,6 @@ void Korisnik::prijaviSe(){
                     {
                         int tmp;
                         tmp = slanje_ponude();
-                        if (tmp)
-                            k.automatski_unos();
                     }
                     else if (ind2 == "REGISTROVANJE" && pr == "4")
                         registrovanje_ponude();
