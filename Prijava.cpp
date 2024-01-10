@@ -64,7 +64,7 @@ void Korisnik::prijaviSe()
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [APLICIRANJE], [ODJAVA] ....\n";
             if (pr == "4")
-                std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [BRISANJE] ....\n";
+                std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [BRISANJE] ,[PREGLED]....\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
 
@@ -92,9 +92,10 @@ void Korisnik::prijaviSe()
                 {
                     if (ind2 == "REGISTROVANJE")
                        registrovanje_ponude();
-                    /*else if(ind2=="BRISANJE")
-                    upravljanje_ponudama();*/
+                    else if(ind2=="PREGLED")
+                    pregled_trenutnih_ponuda();
                 }
+            
 
                     else if (pr == "5")
                     {

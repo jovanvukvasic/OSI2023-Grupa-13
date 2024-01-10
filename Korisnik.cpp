@@ -88,7 +88,7 @@ void Korisnik::slanje_ponude()
     }
 }
 
-void Korisnik::pregle_trenutnih_ponuda()
+void Korisnik::pregled_trenutnih_ponuda()
 {
     std::ifstream inputFile("poslate_ponude.txt"); // Zamenite "nekretnine.txt" sa imenom vaše datoteke
 
@@ -110,7 +110,7 @@ void Korisnik::pregle_trenutnih_ponuda()
 }
 void Korisnik::registrovanje_ponude()
 {
-    pregle_trenutnih_ponuda();
+    pregled_trenutnih_ponuda();
     int bp;
     std::cout << "Unesite broj ponude koju zelite registrovati: " << std::endl;
     std::cin >> bp;
