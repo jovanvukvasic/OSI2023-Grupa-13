@@ -1,7 +1,7 @@
 #include "Korisnik.h"
 #include "Nekretnina.hpp"
 
-int Korisnik::slanje_ponude()
+void Korisnik::slanje_ponude()
 {
     std::string tipN; // Tip nekretnine (npr. "Stan", "Kuća", "Poslovni prostor")
     std::string adresa;
@@ -86,10 +86,6 @@ int Korisnik::slanje_ponude()
     {
         std::cout << "Informacije nisu sačuvane." << std::endl;
     }
-    if (odgovor == "DA" || odgovor == "Da" || odgovor == "da")
-        return 1;
-    else
-        return 0;
 }
 
 void Korisnik::registrovanje_ponude()

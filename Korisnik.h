@@ -75,10 +75,10 @@ public:
     void prikazProfila();
     void prikaziNekretnine();
     void odjava();
-    int slanje_ponude();
+    void slanje_ponude();
     void registrovanje_ponude();
-    void automatski_unos();
     void azurirajListu();
     void ucitajNekretnine();
     void generisiListu();
+    //void upravljanje_ponudama();
 };

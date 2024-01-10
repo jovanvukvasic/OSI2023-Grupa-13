@@ -1,2 +1,2 @@
 Kuca,Save Mandica,Nevena,100,4,uca na dva sprata,105000
-Stan,Petra Pecije 10a,Nevena,80,2,vosoban stan,89250
+Stan,Kej,Nevena,70,2,vosoban stan,94500
