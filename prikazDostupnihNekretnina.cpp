@@ -20,7 +20,7 @@ std::vector<Nekretnina> prikazDostupnihNekretnina() {
         std::string id, tip, adresa, vlasnik, brojSobaStr, opis, dostupnostStr;
         double povrsina, cena;
         int brojSoba;
-        bool dostupnost;
+        std::string dostupnost;
         
         // Pretpostavka je da su vrijednosti u datoteci razdvojene zarezima
         std::getline(iss, id, ',');
@@ -34,10 +34,10 @@ std::vector<Nekretnina> prikazDostupnihNekretnina() {
         std::getline(iss, opis, ',');
         iss >> cena;
         iss.ignore();
-        std::getline(iss, dostupnostStr, ',');
-        dostupnost = dostupnostStr == "1";
+        std::getline(iss, dostupnostStr);
+        
 
-        if (dostupnost) { 
+        if (dostupnostStr=="1") { 
             Nekretnina nekretnina(id, tip, adresa, vlasnik, povrsina, brojSoba, opis, cena, dostupnost);
             nekretnine.push_back(nekretnina);
         }
