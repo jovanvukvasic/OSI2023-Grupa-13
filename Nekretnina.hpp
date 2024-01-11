@@ -13,11 +13,11 @@ private:
     int brojSoba;            
     std::string opis;        
     double cena;             
-    bool dostupnost;         
+    std::string dostupnost;         
 
 public:
     // Konstruktor
-    Nekretnina(const std::string& id, const std::string& tip, const std::string& adr,const std::string& vl, double pov, int brSoba, const std::string& opis, double cena, bool dostupna)
+    Nekretnina(const std::string& id, const std::string& tip, const std::string& adr,const std::string& vl, double pov, int brSoba, const std::string& opis, double cena, std::string& dostupna)
         : id(id), tip(tip), adresa(adr), vlasnik(vl), povrsina(pov), brojSoba(brSoba), opis(opis), cena(cena), dostupnost(dostupna) {}
 
     // Metoda za prikaz informacija o nekretnini
@@ -38,7 +38,7 @@ public:
                   << "\n    Opis: " << opis
                   << "\n    Cena: " << cena <<" KM"
                   << "\n    Vlasnik: " << vlasnik
-                  << "\n    Dostupnost: " << (dostupnost ? "Dostupno" : "Nije dostupno")
+                  << "\n    Dostupnost: " << (dostupnost=="1" ? "Dostupno" : "Nije dostupno")
                   << std::endl;
     }
 
