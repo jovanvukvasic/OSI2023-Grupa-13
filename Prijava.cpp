@@ -94,6 +94,8 @@ void Korisnik::prijaviSe()
                        registrovanje_ponude();
                     else if(ind2=="PREGLED")
                     pregled_trenutnih_ponuda();
+                    else if(ind2=="BRISANJE")
+                        upravljanje_ponudama();
                 }
             
 
