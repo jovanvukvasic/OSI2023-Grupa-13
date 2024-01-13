@@ -84,7 +84,8 @@ public:
     void upravljanje_ponudama();
 
 //------------KUPOVINA----------------------
-    
+    void nekretnineZaKupovinu();
+ void kupovina();
 //-------------------------------------------
 
 };
