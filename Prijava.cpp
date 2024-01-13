@@ -60,7 +60,7 @@ void Korisnik::prijaviSe()
             if (pr == "1")
                 std::cout << "\nDostupne operacije vlasniku: [PRIKAZ], [SLANJE], [ODJAVA] ....\n";
             if (pr == "2")
-                std::cout << "\nDostupne operacije kupac: [PRIKAZ], [APLICIRANJE], [ODJAVA] ....\n";
+                std::cout << "\nDostupne operacije kupac: [PRIKAZ], [KUPOVINA], [ODJAVA] ....\n";
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [APLICIRANJE], [ODJAVA] ....\n";
             if (pr == "4")
@@ -88,6 +88,22 @@ void Korisnik::prijaviSe()
                     if (ind2 == "SLANJE")
                         slanje_ponude();
                 }
+
+
+//----------------------------------KUPOVINA---------------------------------
+                
+
+
+
+
+                
+
+ //----------------------------------------------------------------------------
+
+
+
+
+
                 else if (pr == "4")
                 {
                     if (ind2 == "REGISTROVANJE")
