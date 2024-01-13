@@ -82,4 +82,9 @@ public:
     void generisiListu();
     void pregled_trenutnih_ponuda();
     void upravljanje_ponudama();
+
+//------------KUPOVINA----------------------
+    
+//-------------------------------------------
+
 };

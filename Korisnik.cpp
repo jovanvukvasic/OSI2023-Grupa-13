@@ -64,6 +64,31 @@ void Korisnik::slanje_ponude()
     std::cout << "Automatski unos informacija o vlasniku." << std::endl;
     // Ovdje biste mogli implementirati kod za automatski unos informacija o vlasniku
 
+
+    //------------PRODAJA----------------------------------------------------------------------------------------------------------
+    std::string svrha;
+    std::cout << "Unesite namjenu (moguce opcije [NAJAM], [PRODAJA]): ";
+    std::cin >> svrha;
+    if (svrha.empty())
+    {
+        std::cout << "Tip nekretnine ne sme biti prazan. Molimo vas ponovite unos." << std::endl;
+    }
+    if(svrha=="PRODAJA"){
+        svrha="prodaja";
+        
+    }
+    //----------------------------------------------------------------------------------------------------------------------
+
+
+
+    //----------NAJAM------------------------------------------------------------------------------------------------------------
+
+    else if(svrha=="NAJAM"){
+        svrha="najam";
+    }
+    else std::cout<<"Neispravno izabrana opcija.\n";
+    //----------------------------------------------------------------------------------------------------------------------
+
     std::cout << "Zelite li sacuvati informacije o nekretnini? (Da/Ne): ";
     std::string odgovor;
     std::cin >> odgovor;
@@ -79,7 +104,8 @@ void Korisnik::slanje_ponude()
             datoteka << povrsina << ",";
             datoteka << brojSoba << ",";
             datoteka << opis << ",";
-            datoteka << cena << std::endl;
+            datoteka << cena << ",";
+            datoteka << svrha << std::endl;
 
             std::cout << "Ponuda je uspjesno poslana." << std::endl;
 
@@ -153,9 +179,6 @@ void Korisnik::registrovanje_ponude()
     }
 
     ID = std::to_string(std::stoi(ID) + 1);
-
-    std::cout << "Novi ID: " << ID << std::endl;
-
 
     file.close();
     //---------------------------------------------Kraj dijela sa trazenje IDa---------------------------------------------
@@ -274,10 +297,11 @@ void Korisnik::ucitajNekretnine()
         double povrsina, cena;
         int brojSoba;
         std::string dostupnost;
+        std::string svrha;
 
-        if (std::getline(iss, id, ',') >> tip >> adresa >> vlasnik >> povrsina >> brojSoba >> opis >> cena >> dostupnost)
+        if (std::getline(iss, id, ',') >> tip >> adresa >> vlasnik >> povrsina >> brojSoba >> opis >> cena >> svrha >> dostupnost)
         {
-            Nekretnina nekretnina(id, tip, adresa, vlasnik, povrsina, brojSoba, opis, cena, dostupnost);
+            Nekretnina nekretnina(id, tip, adresa, vlasnik, povrsina, brojSoba, opis, cena, svrha, dostupnost);
             listaNekretnina.push_back(nekretnina);
         }
     }
@@ -397,7 +421,7 @@ void Korisnik::upravljanje_ponudama()
 
         if (Id == id)
         {
-            std::string tip, adresa, vlasnik, brojSobaStr, opis, dostupnostStr;
+            std::string tip, adresa, vlasnik, brojSobaStr, opis, dostupnostStr, svrha;
             double povrsina, cijena;
             int brojSoba;
 
@@ -411,12 +435,13 @@ void Korisnik::upravljanje_ponudama()
             std::getline(iss, opis, ',');
             iss >> cijena;
             iss.ignore();
+            std::getline(iss, svrha,',');
             std::getline(iss, dostupnostStr);
 
             if (dostupnostStr == "1")
             {
                 dostupnostStr = "0";
-                tempFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << ","<<opis<<"," << cijena << "," << dostupnostStr << std::endl;
+                tempFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << ","<<opis<<"," << cijena << "," << ',' << svrha << dostupnostStr << std::endl;
             }
             else
             {
