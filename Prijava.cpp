@@ -67,7 +67,8 @@ void Korisnik::prijaviSe()
                 std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [BRISANJE] ,[PREGLED]....\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
-
+            if (pr == "6")
+                std::cout << "\nDostupne operacije adminu: [KORISNICI] ....\n";
             while (ind2 != "ODJAVA")
             {
                 // prikaz informacija o transakcijama-----------------------------------------------
@@ -88,38 +89,39 @@ void Korisnik::prijaviSe()
                     if (ind2 == "SLANJE")
                         slanje_ponude();
                 }
+                else if (pr == "6")
+                {
+                    if (ind2 == "KORISNICI")
+                        prikaz_informacija_o_agenciji();
+                }
 
-
-//----------------------------------KUPOVINA---------------------------------
-                else if(pr=="2"){
-                    if(ind2=="KUPOVINA") {
+                //----------------------------------KUPOVINA---------------------------------
+                else if (pr == "2")
+                {
+                    if (ind2 == "KUPOVINA")
+                    {
                         nekretnineZaKupovinu();
                         kupovina();
                     }
                 }
 
- //----------------------------------------------------------------------------
-
-
-
-
+                //----------------------------------------------------------------------------
 
                 else if (pr == "4")
                 {
                     if (ind2 == "REGISTROVANJE")
-                       registrovanje_ponude();
-                    else if(ind2=="PREGLED")
-                    pregled_trenutnih_ponuda();
-                    else if(ind2=="BRISANJE")
+                        registrovanje_ponude();
+                    else if (ind2 == "PREGLED")
+                        pregled_trenutnih_ponuda();
+                    else if (ind2 == "BRISANJE")
                         upravljanje_ponudama();
                 }
-            
 
-                    else if (pr == "5")
-                    {
-                        if (ind2 == "AZURIRAJ")
-                            azurirajListu();
-                    }
+                else if (pr == "5")
+                {
+                    if (ind2 == "AZURIRAJ")
+                        azurirajListu();
+                }
                 else if (ind2 == "GENERISANJE" && pr == "4")
                     generisiListu();
                 /*

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <limits>
-
+#include <iomanip>
 
 void Korisnik::slanje_ponude()
 {
@@ -468,4 +468,45 @@ void Korisnik::upravljanje_ponudama()
     {
         std::cerr << "Greska pri brisanju originalne datoteke." << std::endl;
     }
+}
+
+void Korisnik::prikaz_informacija_o_agenciji()
+{
+    std::ifstream inputFile("nalozi.txt");
+
+    if (!inputFile.is_open())
+    {
+        std::cerr << "Nije moguće prikazati registrovane korisnike." << std::endl;
+        return;
+    }
+    std::cout << "Registrovani korisnici:" << std::endl;
+
+    std::string line;
+    int redniBroj = 1;
+
+    while (std::getline(inputFile, line))
+    {
+        std::istringstream iss(line);
+        std::vector<std::string> tokens;
+
+        std::string token;
+        while (std::getline(iss, token, ' '))
+        {
+            tokens.push_back(token);
+        }
+
+        if (tokens.size() >= 7)
+        {
+            std::cout << "[" << redniBroj <<"]"<<std::endl;
+            std::cout << "    " <<"Ime: "<<tokens[3] << std::endl;
+            std::cout << "    " <<"Prezime: "<<tokens[4] << std::endl;
+            std::cout << "    " << "Tip profila: " << tokens[0] << std::endl;
+            std::cout << "    " << "Korisnicko ime: " << tokens[1] << std::endl;
+            std::cout << "    " << "Broj telefona: " << tokens[5] << std::endl;
+            std::cout << "    " << "E-mail adresa: " << tokens[6] << std::endl;
+            redniBroj++;
+        }
+    }
+
+    inputFile.close();
 }
