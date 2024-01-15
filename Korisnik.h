@@ -83,9 +83,7 @@ public:
     void pregled_trenutnih_ponuda();
     void upravljanje_ponudama();
     void prikaz_informacija_o_agenciji();
-//------------KUPOVINA----------------------
     void nekretnineZaKupovinu();
- void kupovina();
-//-------------------------------------------
-
+    void kupovina();
+    void azuriranje_informacija_o_nekretnini();
 };
