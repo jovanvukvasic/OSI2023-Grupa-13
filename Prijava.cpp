@@ -58,7 +58,7 @@ void Korisnik::prijaviSe()
             k.prikazProfila();
 
             if (pr == "1")
-                std::cout << "\nDostupne operacije vlasniku: [PRIKAZ], [SLANJE], [ODJAVA] ....\n";
+                std::cout << "\nDostupne operacije vlasniku: [PRIKAZ], [SLANJE], [ODJAVA], [AZURIRANJE] ....\n";
             if (pr == "2")
                 std::cout << "\nDostupne operacije kupac: [PRIKAZ], [KUPOVINA], [ODJAVA] ....\n";
             if (pr == "3")
@@ -88,6 +88,8 @@ void Korisnik::prijaviSe()
                 {
                     if (ind2 == "SLANJE")
                         slanje_ponude();
+                         else if(ind2 =="AZURIRANJE")
+                    azuriranje_informacija_o_nekretnini();
                 }
                 else if (pr == "6")
                 {
