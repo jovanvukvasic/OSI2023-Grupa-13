@@ -510,3 +510,76 @@ void Korisnik::prikaz_informacija_o_agenciji()
 
     inputFile.close();
 }
+
+void Korisnik::azuriranje_informacija_o_nekretnini() 
+{
+    std::ifstream inputFile("nekretnine.txt");
+
+    if (!inputFile.is_open()) {
+        std::cerr << "Nije moguće otvoriti datoteku za čitanje." << std::endl;
+        return;
+    }
+
+    std::cout << "Nekretnine za korisnika " << korisnickoIme << ":" << std::endl;
+
+    std::string line;
+    std::vector<std::string> tokens;
+
+    while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        tokens.clear();
+
+        std::string token;
+        while (std::getline(iss, token, ',')) {
+            tokens.push_back(token);
+        }
+
+        if (tokens.size() >= 7 && tokens[3] == korisnickoIme) {
+            std::cout << tokens[0] << ", " << tokens[1] << ", " << tokens[2] << ", " << tokens[4] << ", " << tokens[6] << ", " << tokens[7] << ", " << tokens[8] << std::endl;
+        }
+    }
+
+    inputFile.close();
+
+    int izbor;
+    std::cout << "Unesite broj nekretnine koju zelite azurirati: ";
+    std::cin >> izbor;
+
+    // Otvaranje datoteke za pisanje (temp.txt)
+    std::ofstream tempFile("temp.txt");
+
+    if (!tempFile.is_open()) {
+        std::cerr << "Nije moguće otvoriti datoteku za čitanje ili pisanje." << std::endl;
+        return;
+    }
+
+    inputFile.open("nekretnine.txt");
+
+    // Preskakanje odabrane nekretnine
+    while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        tokens.clear();
+
+        std::string token;
+        while (std::getline(iss, token, ',')) {
+            tokens.push_back(token);
+        }
+
+        if (tokens.size() >= 7 && tokens[3] == korisnickoIme && std::stoi(tokens[0]) == izbor) {
+            // Preskoci ovu nekretninu
+            continue;
+        }
+
+        tempFile << line << std::endl;
+    }
+
+    inputFile.close();
+    tempFile.close();
+
+    remove("nekretnine.txt");
+    rename("temp.txt", "nekretnine.txt");
+    std::cout<<"Unesite nove informacije o nekretnini:"<<std::endl;
+    slanje_ponude();
+
+    std::cout << "Nove informacije su uspjesno unesene. Azuriranje ceka odobrenje agencije."<< std::endl;
+}
