@@ -88,6 +88,7 @@ public:
     void azuriranje_informacija_o_nekretnini();
     void nekretnineZaNajam();
     void najam();
-    void zavedi();
+    void zavedi_kupovina();
+    void zavedi_najam();
     void genersanje_izvjestaja_o_prihodima_i_rashodima();
 };
