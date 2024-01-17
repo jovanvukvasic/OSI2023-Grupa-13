@@ -52,6 +52,12 @@ void Korisnik::najam() {
     std::cout << "Unesite broj nekretnine koju zelite iznajmiti: ";
     std::cin >> br;
 
+    std::string imee, prezimee;
+    std::cout << "Unesite ime: ";
+    std::cin >> imee;
+    std::cout << "Unesite prezime: ";
+    std::cin >> prezimee;
+
     std::ifstream inputFile("nekretnine.txt");
     std::ofstream outputFile("iznajmljivanje_nekretnina.txt", std::ios::app);
     std::ofstream tempFile("tempnekretnine.txt");
@@ -68,9 +74,11 @@ void Korisnik::najam() {
     while (std::getline(inputFile, novaLinija)) {
         std::istringstream iss(novaLinija);
         std::getline(iss, ID, ',');
+        ID.erase(std::remove_if(ID.begin(), ID.end(), ::isspace), ID.end());
 
         if (ID == br) {
-            outputFile << novaLinija << '\n';  // Pronađena odgovarajuća linija, kopiramo je
+              outputFile << imee << "," << prezimee << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
+            std::cout << "\nVas zahtjev za najam je u obradi.\n" << std::endl; // Pronađena odgovarajuća linija, kopiramo je
         } else {
             tempFile << novaLinija << '\n';  // Kopiramo sve ostale linije u temp datoteku
         }
@@ -79,7 +87,10 @@ void Korisnik::najam() {
     inputFile.close();
     outputFile.close();
     tempFile.close();
+     std::remove("nekretnine.txt");
+    std::rename("tempnekretnine.txt", "nekretnine.txt");
 }
+
 
 
 void Korisnik::zavedi_najam()
