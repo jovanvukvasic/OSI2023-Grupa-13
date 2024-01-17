@@ -1,5 +1,6 @@
 #include "Korisnik.h"
-
+#include <limits>
+#include "prikazDostupnihNekretnina.h"
 void Korisnik::prijaviSe()
 {
     std::cout << "~ Prijava na sistem ~\n";
@@ -145,6 +146,58 @@ void Korisnik::prijaviSe()
                         std::cin >> ind3;
                         // if (ind3 == "3")
                         //  genersanje_izvjestaja_o_prihodima_i_rashodima();
+                    }
+                    else if (ind2 == "LISTA")
+                    {
+                        
+                            std::vector<std::string> odabraneAdrese;
+
+                            std::string odabranaAdresa;
+                            std::cout << "Dostupne nekretnine:" << std::endl;
+
+                            std::vector<Nekretnina> dostupneNekretnine = prikazDostupnihNekretnina();
+
+                            while (true)
+                            {
+                                std::cout << "Dostupne nekretnine:" << std::endl;
+
+                                for (int i = 0; i < dostupneNekretnine.size(); ++i)
+                                {
+                                    std::cout << i + 1 << ". " << dostupneNekretnine[i].getAdresa() << std::endl;
+                                }
+
+                                std::cout << "Unesite redni broj nekretnine za koju želite generisati listu zadataka (0 za kraj): ";
+                                int redniBroj;
+                                std::cin >> redniBroj;
+
+                                if (redniBroj == 0 || redniBroj > dostupneNekretnine.size())
+                                {
+                                    break;
+                                }
+
+                                odabranaAdresa = dostupneNekretnine[redniBroj - 1].getAdresa();
+                                odabraneAdrese.push_back(odabranaAdresa);
+
+                                std::cout << "\nUnesite zadatke za nekretninu i radnika: " << odabranaAdresa << std::endl;
+
+                                std::string noviZadatak;
+
+                                std::cin.ignore();
+
+                                std::getline(std::cin, noviZadatak);
+
+                                std::string nik;
+
+                                std::getline(std::cin, nik);
+
+                                std::ofstream file("generisane_liste.txt", std::ios::app);
+                                file << odabranaAdresa << "," << noviZadatak << "," << nik << ",0\n";
+
+                                file.close();
+
+                                std::cout << "Generisana lista zadataka za nekretninu " << odabranaAdresa << " uspješno upisana u datoteku." << std::endl;
+                            
+                        }
                     }
                 }
 
