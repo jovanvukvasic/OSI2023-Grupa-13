@@ -86,4 +86,6 @@ public:
     void nekretnineZaKupovinu();
     void kupovina();
     void azuriranje_informacija_o_nekretnini();
+    void nekretnineZaNajam();
+    void najam();
 };
