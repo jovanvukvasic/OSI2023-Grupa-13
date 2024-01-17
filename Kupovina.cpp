@@ -82,3 +82,68 @@ void Korisnik::kupovina() {
 }
 
 
+
+void Korisnik::zavedi_kupovina()
+{
+    int bp;
+    std::cout << "Unesite broj ponude koju zelite registrovati: ";
+    std::cin >> bp;
+
+    std::ifstream inputFile2("kupovina_nekretnine.txt");
+    std::ofstream outputFile("nekretnine.txt", std::ios::app);
+    std::ofstream tempFile("temp_poslate_ponude.txt");
+
+    if (!inputFile2.is_open() || !outputFile.is_open() || !tempFile.is_open())
+    {
+        std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
+        return;
+    }
+
+    int redniBroj = 1;
+    std::string novaLinija1;
+
+    while (std::getline(inputFile2, novaLinija1))
+    {
+        std::istringstream iss(novaLinija1);
+        if (redniBroj == bp)
+        {
+
+            std::string immm, prezzz, id, tip, adresa, vlasnik, opis, svrha, dostupnostStr;
+            double povrsina, cijena;
+            int brojSoba;
+
+            std::getline(iss, immm, ',');
+            std::getline(iss, prezzz, ',');
+            std::getline(iss, id, ',');
+            std::getline(iss, tip, ',');
+            std::getline(iss, adresa, ',');
+            std::getline(iss, vlasnik, ',');
+            iss >> povrsina;
+            iss.ignore();
+            iss >> brojSoba;
+            iss.ignore();
+            std::getline(iss, opis, ',');
+            iss >> cijena;
+            iss.ignore();
+            std::getline(iss, svrha, ',');
+            std::getline(iss, dostupnostStr);
+            if (dostupnostStr == "1")
+
+                dostupnostStr = "2";
+            outputFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << "," << opis << "," << cijena << "," << svrha << ',' << dostupnostStr << std::endl;
+        }
+        else
+        {
+            tempFile << novaLinija1 << '\n';
+        }
+        redniBroj++;
+    }
+    inputFile2.close();
+    outputFile.close();
+    tempFile.close();
+
+    std::remove("kupovina_nekretnine.txt");
+    std::rename("temp_poslate_ponude.txt", "kupovina_nekretnine.txt");
+
+    std::cout << "Zahtjev za kupovinu je uspjesno poslat." << std::endl;
+}
