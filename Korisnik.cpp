@@ -460,26 +460,7 @@ void Korisnik::prikaziListu(std::string korisnickoIme)
 void Korisnik::azurirajListu(std::string korisnickoIme)
 {
     {
-        std::ifstream inputFile2("generisane_liste.txt");
-        int redniBroj = 1;
-        std::string novaLinija1, naziv, zadatak, ime, ind;
-
-        while (std::getline(inputFile2, novaLinija1))
-        {
-            std::istringstream iss(novaLinija1);
-            std::getline(iss, naziv, ',');
-            std::getline(iss, zadatak, ',');
-            std::getline(iss, ime, ',');
-            std::getline(iss, ind);
-            if (korisnickoIme == ime)
-            {
-                std::cout << "[" << redniBroj << "]. " << naziv << ", " << zadatak << std::endl;
-                redniBroj++;
-            }
-        }
-
-        inputFile2.close();
-
+        prikaziListu(korisnickoIme);
         int bp;
         std::cout << "Unesite broj zadatka koji zelite uraditi ili 0 za kraj: " << std::endl;
         std::cin >> bp;
@@ -500,12 +481,12 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         }
 
         int redniBroj1 = 1;
-        std::string novaLinija4;
+        std::string novaLinija;
         std::string naziv1, zadatak1, ime1, ind1;
 
-        while (std::getline(inputFile5, novaLinija4))
+        while (std::getline(inputFile5, novaLinija))
         {
-            std::istringstream iss(novaLinija1);
+            std::istringstream iss(novaLinija);
             std::getline(iss, naziv1, ',');
             std::getline(iss, zadatak1, ',');
             std::getline(iss, ime1, ',');
@@ -522,7 +503,7 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
 
                 tempFile << naziv1 << "," << zadatak1 << "," << ime1 << "," << ind1 << std::endl;
 
-                redniBroj++;
+                redniBroj1++;
             }
             else
                 tempFile << naziv1 << "," << zadatak1 << "," << ime1 << "," << ind1 << std::endl;
