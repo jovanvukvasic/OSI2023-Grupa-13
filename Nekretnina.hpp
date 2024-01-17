@@ -62,6 +62,10 @@ public:
     std::string getTip()const{
         return tip;
     }
+    std::string getPretraga() const
+    {
+        return svrha;
+    }
 
     //ova metoda proverava da li je nekretnina za odrzavanje
     bool jePotrebnoOdrzavanje() const {
