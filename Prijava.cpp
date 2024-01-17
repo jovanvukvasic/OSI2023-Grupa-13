@@ -202,11 +202,11 @@ void Korisnik::prijaviSe()
                     }
                 }
 
-               /* else if (pr == "5")
+                else if (pr == "5")
                 {
                     if (ind2 == "AZURIRAJ")
-                        azurirajListu();
-                }*/
+                        azurirajListu(korisnickoIme);
+                }
 
                 else
                 {

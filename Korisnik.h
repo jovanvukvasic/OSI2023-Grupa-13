@@ -42,7 +42,7 @@ public:
     void odjava();
     void slanje_ponude();
     void registrovanje_ponude();
-   // void azurirajListu();
+   void azurirajListu(std::string korsinickoime);
     void ucitajNekretnine();
     
     void pregled_trenutnih_ponuda();
