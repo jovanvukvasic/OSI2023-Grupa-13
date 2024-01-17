@@ -32,21 +32,20 @@ void Korisnik::prikaziNekretnine()
 {
     std::string ind3;
 
-    std::cout << "\n\nMogucnost filtera, [ALL] [F-c], [F-a], [F-t], [S-r-k], [S-r-c], [S-o-k], [S-o-c] \n";
+    std::cout << "\n\nMogucnost filtera:\n  [FILTER-CIJENA],\n  [FILTER-ADRESA],\n  [FILTER-TIP],\n  [SORT-RASTUCE-KVADRATURA],\n  [SORT-RASTUCE-CIJENA],\n  [SORT-OPADAJUCE-KVADRATURA],\n  [SORT-OPADAJUCE-CIJENA],\n  [PRETRAGA-PRODAJA],\n  [PRETRAGA-NAJAM] \n";
     std::cin >> ind3;
 
     std::vector<Nekretnina> nekretnine = prikazDostupnihNekretnina();
 
-    if (ind3 == "ALL")
-    {
+   
 
-        for (Nekretnina nekretnina : nekretnine)
-        {
-            nekretnina.prikaziInformacije();
-        }
+    for (Nekretnina nekretnina : nekretnine)
+    {
+        nekretnina.prikaziInformacije();
     }
 
-    else if (ind3 == "F-c")
+
+    else if (ind3 == "FILTER-CIJENA")
     {
         double cijen1, cijen2;
         std::cout << "Unesite pocetnu i krajnju cijenu" << std::endl;
@@ -63,10 +62,11 @@ void Korisnik::prikaziNekretnine()
         }
     }
 
-    else if (ind3 == "F-a")
+    else if (ind3 == "FILTER-ADRESA")
     {
         std::string adresa1;
         std::cout << "\nUnesite zeljenu adresu: ";
+        std::cin.ignore();
         std::getline(std::cin, adresa1);
 
         for (Nekretnina nekretnina : nekretnine)
@@ -77,7 +77,7 @@ void Korisnik::prikaziNekretnine()
         }
     }
 
-    else if (ind3 == "F-t")
+    else if (ind3 == "FILTER-TIP")
     {
         std::string tt;
         std::cout << "\nUnesite tip stana: ";
@@ -90,7 +90,7 @@ void Korisnik::prikaziNekretnine()
         }
     }
 
-    else if (ind3 == "S-r-k")
+    else if (ind3 == "SORT-RASTUCE-KVADRATURA")
     {
         std::vector<Nekretnina> nekretnine1 = nekretnine;
         std::sort(nekretnine1.begin(), nekretnine1.end(), uporediPoKvadraturiRASTUCE);
@@ -101,7 +101,7 @@ void Korisnik::prikaziNekretnine()
         }
     }
 
-    else if (ind3 == "S-o-k")
+    else if (ind3 == "SORT-OPADAJUCE-KVADRATURA")
     {
         std::vector<Nekretnina> nekretnine1 = nekretnine;
         std::sort(nekretnine1.begin(), nekretnine1.end(), uporediPoKvadraturiOPADAJUCE);
@@ -112,7 +112,7 @@ void Korisnik::prikaziNekretnine()
         }
     }
 
-    else if (ind3 == "S-r-c")
+    else if (ind3 == "SORT-RASTUCE-CIJENA")
     {
         std::vector<Nekretnina> nekretnine1 = nekretnine;
         std::sort(nekretnine1.begin(), nekretnine1.end(), uporediPoCijeniRASTUCE);
@@ -123,7 +123,7 @@ void Korisnik::prikaziNekretnine()
         }
     }
 
-    else if (ind3 == "S-o-c")
+    else if (ind3 == "SORT-OPADAJUCE-CIJENA")
     {
         std::vector<Nekretnina> nekretnine1 = nekretnine;
         std::sort(nekretnine1.begin(), nekretnine1.end(), uporediPoCijeniOPADAJUCE);
@@ -131,6 +131,27 @@ void Korisnik::prikaziNekretnine()
         for (Nekretnina nekretnina : nekretnine1)
         {
             nekretnina.prikaziInformacije();
+        }
+    }
+    else if (ind3 == "PRETRAGA-NAJAM")
+    {
+        std::cout<<"\nDostupne nekretnine za najam:\n"<<std::endl;
+        for (Nekretnina nekretnina : nekretnine)
+        {
+
+            if (nekretnina.getPretraga() == ind3)
+                nekretnina.prikaziInformacije();
+        }
+    }
+     else if (ind3 == "PRETRAGA-PRODAJA")
+    {
+        std::cout<<"\nDostupne nekretnine za prodaju:\n"<<std::endl;
+
+        for (Nekretnina nekretnina : nekretnine)
+        {
+
+            if (nekretnina.getPretraga() == ind3)
+                nekretnina.prikaziInformacije();
         }
     }
 
