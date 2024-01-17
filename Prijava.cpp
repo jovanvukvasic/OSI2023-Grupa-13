@@ -64,7 +64,7 @@ void Korisnik::prijaviSe()
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [APLICIRANJE], [ODJAVA] ....\n";
             if (pr == "4")
-                std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [BRISANJE] ,[PREGLED]....\n";
+                std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [ZAVOD], [BRISANJE] ,[PREGLED]....\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
@@ -120,6 +120,18 @@ void Korisnik::prijaviSe()
                         registrovanje_ponude();
                     else if (ind2 == "PREGLED")
                         pregled_trenutnih_ponuda();
+                    else if (ind2 == "ZAVOD")
+                    {
+                        std::string ind3;
+                        std::cout << "1. Odobri kupovinu" << std::endl;
+                        std::cout << "2. Odobri najam" << std::endl;
+                        std::cout << "UNESITE REDNI BROJ ZELJENE OPCIJE: ";
+                        std::cin >> ind3;
+                        if (ind3 == "1")
+                            zavedi_kupovina();
+                        else if (ind3 == "2")
+                            zavedi_najam();
+                    }
                     else if (ind2 == "BRISANJE")
                         upravljanje_ponudama();
                     else if (ind2 == "GENERISANJE")
@@ -131,8 +143,8 @@ void Korisnik::prijaviSe()
                         std::cout << "4. Generisanje izvjestaja o stanju racuna" << std::endl;
                         std::cout << "\nUNESITE REDNI BROJ ZELJENE OPCIJE:" << std::endl;
                         std::cin >> ind3;
-                        //if (ind3 == "3")
-                        // genersanje_izvjestaja_o_prihodima_i_rashodima();
+                        // if (ind3 == "3")
+                        //  genersanje_izvjestaja_o_prihodima_i_rashodima();
                     }
                 }
 
