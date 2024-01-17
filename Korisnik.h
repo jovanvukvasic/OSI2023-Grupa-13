@@ -44,7 +44,7 @@ public:
     void registrovanje_ponude();
    void azurirajListu(std::string korsinickoime);
     void ucitajNekretnine();
-    
+    void prikaziListu(std::string korsinicko);
     void pregled_trenutnih_ponuda();
     void upravljanje_ponudama();
     void prikaz_informacija_o_agenciji();

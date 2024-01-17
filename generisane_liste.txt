@@ -2,3 +2,4 @@ Vojvođanska 122,baci smece,Jovan,0
 Bulevar Oslobođenja 88,usisaj,Jovan,0
 Milana Topica 11,ofarbaj ogradu,jelena,0
 Vojvođanska 122,okreciti,marko,0
+Bulevar Oslobođenja 88,usisaj i obrisi,Jovan,0

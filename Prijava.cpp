@@ -206,6 +206,8 @@ void Korisnik::prijaviSe()
                 {
                     if (ind2 == "AZURIRAJ")
                         azurirajListu(korisnickoIme);
+                    else if(ind2=="ZADACI")
+                        prikaziListu(korisnickoIme);
                 }
 
                 else

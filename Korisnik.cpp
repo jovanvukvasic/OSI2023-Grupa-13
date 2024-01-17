@@ -436,7 +436,27 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
     std::cout << "Nove informacije su uspjesno unesene. Azuriranje ceka odobrenje agencije."<< std::endl;
 }
 
+void Korisnik::prikaziListu(std::string korisnickoIme)
+{
+    std::ifstream inputFile2("generisane_liste.txt");
+        int redniBroj = 1;
+        std::string novaLinija1, naziv, zadatak, ime, ind;
 
+        while (std::getline(inputFile2, novaLinija1))
+        {
+            std::istringstream iss(novaLinija1);
+            std::getline(iss, naziv, ',');
+            std::getline(iss, zadatak, ',');
+            std::getline(iss, ime, ',');
+            std::getline(iss, ind);
+            if (korisnickoIme == ime)
+            {
+                std::cout << "[" << redniBroj << "]. " << naziv << ", " << zadatak <<", "<<ind<< std::endl;
+                redniBroj++;
+            }
+        }
+        inputFile2.close();
+}
 void Korisnik::azurirajListu(std::string korisnickoIme)
 {
     {
