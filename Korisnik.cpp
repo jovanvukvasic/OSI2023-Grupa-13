@@ -26,7 +26,7 @@ void Korisnik::slanje_ponude()
     }
 
     std::cout << "Unesite adresu nekretnine: ";
-    std::cin.ignore(); // Da se izbegne problem sa preostalim newline karakterom u baferu
+    std::cin.ignore(); 
     std::getline(std::cin, adresa);
     if (adresa.empty())
     {
