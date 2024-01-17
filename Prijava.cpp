@@ -88,8 +88,8 @@ void Korisnik::prijaviSe()
                 {
                     if (ind2 == "SLANJE")
                         slanje_ponude();
-                         else if(ind2 =="AZURIRANJE")
-                    azuriranje_informacija_o_nekretnini();
+                    else if (ind2 == "AZURIRANJE")
+                        azuriranje_informacija_o_nekretnini();
                 }
                 else if (pr == "6")
                 {
@@ -105,7 +105,7 @@ void Korisnik::prijaviSe()
                         nekretnineZaKupovinu();
                         kupovina();
                     }
-                    if(ind2=="NAJAM")
+                    if (ind2 == "NAJAM")
                     {
                         nekretnineZaNajam();
                         najam();
@@ -122,6 +122,18 @@ void Korisnik::prijaviSe()
                         pregled_trenutnih_ponuda();
                     else if (ind2 == "BRISANJE")
                         upravljanje_ponudama();
+                    else if (ind2 == "GENERISANJE")
+                    {
+                        std::string ind3;
+                        std::cout << "1. Generisanje izvjestaja o transakcijama" << std::endl;
+                        std::cout << "2. Generisanje izvjestaja o transakcijama" << std::endl;
+                        std::cout << "3. Generisanje izvjestaja o prihodima i rashodima." << std::endl;
+                        std::cout << "4. Generisanje izvjestaja o stanju racuna" << std::endl;
+                        std::cout << "\nUNESITE REDNI BROJ ZELJENE OPCIJE:" << std::endl;
+                        std::cin >> ind3;
+                        //if (ind3 == "3")
+                        // genersanje_izvjestaja_o_prihodima_i_rashodima();
+                    }
                 }
 
                 else if (pr == "5")
@@ -129,11 +141,7 @@ void Korisnik::prijaviSe()
                     if (ind2 == "AZURIRAJ")
                         azurirajListu();
                 }
-                else if (ind2 == "GENERISANJE" && pr == "4")
-                    generisiListu();
-                /*
-                    U ZAVISNOSTI OD PROFILA I DOSTUPNOSTI ISTOG, PRIKAZUJU SE OPCIJE KORISNICIMA
-                */
+
                 else
                 {
                     if (ind2 != "ODJAVA")
