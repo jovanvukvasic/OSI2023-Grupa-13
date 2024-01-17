@@ -10,41 +10,6 @@
 #include <string>
 #include <vector>
 
-class Zadatak
-{
-private:
-    std::string naslov;
-    std::string opis;
-    bool zavrsen;
-
-public:
-    Zadatak(const std::string &naslov, const std::string &opis)
-        : naslov(naslov), opis(opis), zavrsen(false) {}
-    std::string getnaslov() const
-    {
-        return naslov;
-    }
-    bool getzavrsen() const
-    {
-        return zavrsen;
-    }
-    std::string getKomentar() const
-    {
-        return opis;
-    }
-    void setzavrsen(bool z)
-    {
-        this->zavrsen = z;
-    }
-    void setkomentar(const std::string &komentar)
-    {
-        this->opis = komentar;
-    }
-    void prikaziInformacije() const
-    {
-        // Prikazi informacije o zadatku
-    }
-};
 
 class Korisnik
 {
@@ -56,7 +21,7 @@ private:
     std::string prezime;
     std::string brojTelefona;
     std::string emailAdresa;
-    std::vector<Zadatak> listaZadataka;
+  
 
 public:
     Korisnik()
@@ -77,9 +42,9 @@ public:
     void odjava();
     void slanje_ponude();
     void registrovanje_ponude();
-    void azurirajListu();
+   // void azurirajListu();
     void ucitajNekretnine();
-    void generisiListu();
+    
     void pregled_trenutnih_ponuda();
     void upravljanje_ponudama();
     void prikaz_informacija_o_agenciji();

@@ -1,6 +1,7 @@
 #include "Korisnik.h"
 #include <limits>
 #include "prikazDostupnihNekretnina.h"
+
 void Korisnik::prijaviSe()
 {
     std::cout << "~ Prijava na sistem ~\n";
@@ -201,11 +202,11 @@ void Korisnik::prijaviSe()
                     }
                 }
 
-                else if (pr == "5")
+               /* else if (pr == "5")
                 {
                     if (ind2 == "AZURIRAJ")
                         azurirajListu();
-                }
+                }*/
 
                 else
                 {
