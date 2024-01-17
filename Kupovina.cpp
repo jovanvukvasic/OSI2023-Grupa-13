@@ -83,7 +83,7 @@ void Korisnik::kupovina()
         if (ID == br)
         {
             outputFile << imee << "," << prezimee << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
-            std::cout << "\nVas zahtjev za kupnju je u obradi.\n" << std::endl;
+            std::cout << "\nVas zahtjev za kupovinu je u obradi.\n" << std::endl;
         }
 
         else
@@ -163,5 +163,5 @@ void Korisnik::zavedi_kupovina()
     std::remove("kupovina_nekretnine.txt");
     std::rename("temp_poslate_ponude.txt", "kupovina_nekretnine.txt");
 
-    std::cout << "Zahtjev za kupovinu je uspjesno poslat." << std::endl;
+    std::cout << "Zahtjev za kupovinu je uspjesno odobren." << std::endl;
 }

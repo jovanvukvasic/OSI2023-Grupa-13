@@ -155,5 +155,5 @@ void Korisnik::zavedi_najam()
     std::remove("iznajmljivanje_nekretnina.txt");
     std::rename("temp.txt", "iznajmljivanje_nekretnina.txt");
 
-    std::cout << "Zahtjev za najam je uspjesno poslat." << std::endl;
+    std::cout << "Zahtjev za najam je odobren." << std::endl;
 }
