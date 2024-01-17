@@ -8,10 +8,10 @@
 #include <vector>
 #include <limits>
 
-void Korisnik::nekretnineZaKupovinu(){
+void Korisnik::nekretnineZaKupovinu()
+{
 
-
-    std::ifstream inputFile("nekretnine.txt"); 
+    std::ifstream inputFile("nekretnine.txt");
 
     if (!inputFile.is_open())
     {
@@ -24,16 +24,16 @@ void Korisnik::nekretnineZaKupovinu(){
     {
 
         std::istringstream iss(line1);
-        std::string  id,tip, adresa, vlasnik, brojSobaStr, opis,svrha,dostupnost;
+        std::string id, tip, adresa, vlasnik, brojSobaStr, opis, svrha, dostupnost;
         double povrsina, cijena;
         int brojSoba;
-        
+
         std::getline(iss, id, ',');
         std::getline(iss, tip, ',');
         std::getline(iss, adresa, ',');
         std::getline(iss, vlasnik, ',');
         iss >> povrsina;
-        iss.ignore(); 
+        iss.ignore();
         iss >> brojSoba;
         iss.ignore();
         std::getline(iss, opis, ',');
@@ -42,21 +42,30 @@ void Korisnik::nekretnineZaKupovinu(){
         std::getline(iss, svrha, ',');
         std::getline(iss, dostupnost);
 
-        if(dostupnost=="1" && svrha=="prodaja") std::cout <<"["<< id <<"]    " << tip <<" " <<adresa<<" " <<vlasnik<<" " <<povrsina<<" " <<brojSoba<<" " <<opis<<" " <<cijena<< std::endl;
+        if (dostupnost == "1" && svrha == "prodaja")
+            std::cout << "[" << id << "]    " << tip << " " << adresa << " " << vlasnik << " " << povrsina << " " << brojSoba << " " << opis << " " << cijena << std::endl;
     }
     inputFile.close();
 }
 
-void Korisnik::kupovina() {
+void Korisnik::kupovina()
+{
     std::string br;
     std::cout << "Unesite broj nekretnine koju zelite kupiti: ";
     std::cin >> br;
 
+    std::string imee, prezimee;
+    std::cout << "Unesite ime: ";
+    std::cin >> imee;
+    std::cout << "Unesite prezime: ";
+    std::cin >> prezimee;
+
     std::ifstream inputFile("nekretnine.txt");
-    std::ofstream outputFile("kupovina_nekretnina.txt", std::ios::app);
+    std::ofstream outputFile("kupovina_nekretnine.txt", std::ios::app);
     std::ofstream tempFile("tempnekretnine.txt");
 
-    if (!inputFile.is_open() || !outputFile.is_open() || !tempFile.is_open()) {
+    if (!inputFile.is_open() || !outputFile.is_open() || !tempFile.is_open())
+    {
         std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
         return;
     }
@@ -65,20 +74,29 @@ void Korisnik::kupovina() {
     std::string ID;
 
     // Pretražujemo linije i kopiramo ih u odgovarajuće datoteke
-    while (std::getline(inputFile, novaLinija)) {
+    while (std::getline(inputFile, novaLinija))
+    {
         std::istringstream iss(novaLinija);
         std::getline(iss, ID, ',');
+        ID.erase(std::remove_if(ID.begin(), ID.end(), ::isspace), ID.end());
 
-        if (ID == br) {
-            outputFile << novaLinija << '\n';  // Pronađena odgovarajuća linija, kopiramo je
-        } else {
-            tempFile << novaLinija << '\n';  // Kopiramo sve ostale linije u temp datoteku
+        if (ID == br)
+        {
+            outputFile << imee << "," << prezimee << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
+            std::cout << "\nVas zahtjev za kupnju je u obradi.\n" << std::endl;
+        }
+
+        else
+        {
+            tempFile << novaLinija << '\n'; // Kopiramo sve ostale linije u temp datoteku
         }
     }
-
+    // Zatvaranje datoteka nakon završetka petlje
     inputFile.close();
     outputFile.close();
     tempFile.close();
+    std::remove("nekretnine.txt");
+    std::rename("tempnekretnine.txt", "nekretnine.txt");
 }
 
 
