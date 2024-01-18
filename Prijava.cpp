@@ -76,7 +76,7 @@ void Korisnik::prijaviSe()
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
-                std::cout << "\nDostupne operacije adminu: [KORISNICI] ....\n";
+                std::cout << "\n";
             std::cout << "\n----------------------------------------------------------------------------------------------------------\n";
 
             while (ind2 != "ODJAVA")
@@ -145,7 +145,6 @@ void Korisnik::prijaviSe()
                 }
                 else if (pr == "6")
                 {
-                    if (ind2 == "KORISNICI")
                         prikaz_informacija_o_agenciji();
                 }
 
