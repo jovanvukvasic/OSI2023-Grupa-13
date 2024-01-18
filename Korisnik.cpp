@@ -521,3 +521,25 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         
     }
 }
+
+
+
+
+void Korisnik::genersanje_izvjestaja_o_prihodima_i_rashodima()
+{
+    std::ifstream file("prihodi_rashodi.txt");
+
+    if (!file.is_open())
+    {
+        std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
+        return;
+    }
+
+    std::string linija;
+    while (std::getline(file, linija))
+    {
+        std::cout << linija << std::endl;
+    }
+
+    file.close();
+}
