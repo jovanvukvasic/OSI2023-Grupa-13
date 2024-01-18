@@ -374,10 +374,21 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
         return;
     }
 
-    std::cout << "Nekretnine za korisnika " << korisnickoIme << ":" << std::endl;
+    std::cout << "> Nekretnine za korisnika :\n\n" << korisnickoIme << ":" << std::endl;
+
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::setw(5) << std::setw(6) << "  ID broj"
+              << "  | " << std::setw(18) << "Tip nekretnine"
+              << " | " << std::setw(29) << "Adresa nekretnine"
+              << " | " << std::setw(10) << "Svrha"
+              << " | " << std::setw(8) << std::setw(10) << "Cijena [KM]"
+              << "   | " << std::endl;
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
+
 
     std::string line;
     std::vector<std::string> tokens;
+    int brojac1=0;
 
     while (std::getline(inputFile, line))
     {
@@ -390,17 +401,36 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
             tokens.push_back(token);
         }
 
-        if (tokens.size() >= 7 && tokens[3] == korisnickoIme)
+        if (tokens.size() >= 7 && tokens[3] == korisnickoIme && tokens[9]=="1"){
+            if (tokens[0].size() == 1)
+                std::cout << std::setw(5) << std::setw(6) << "[ " << tokens[0]  << " ]"
+                          << "  | " << std::setw(18) << tokens[1]  << " | " << std::setw(29) << tokens[2] << " | " << std::setw(10) << tokens[8]  << " | " << std::setw(8) << std::setw(10) << tokens[7]  << std::setw(3) << "KM"
+                          << " | " << std::endl;
+            else
+                std::cout << std::setw(5) << std::setw(6) << "[ " << tokens[0]<< " ]"
+                          << " | " << std::setw(18) << tokens[1]  << " | " << std::setw(29) << tokens[2] << " | " << std::setw(10) << tokens[8]  << " | " << std::setw(8) << std::setw(10) << tokens[7]  << std::setw(3) << "KM"
+                          << " | " << std::endl;
+        }
         {
-            std::cout << tokens[0] << ", " << tokens[1] << ", " << tokens[2] << ", " << tokens[4] << ", " << tokens[6] << ", " << tokens[7] << ", " << tokens[8] << std::endl;
+        brojac1++;
+        
         }
     }
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
+
 
     inputFile.close();
 
     int izbor;
-    std::cout << "Unesite broj nekretnine koju zelite azurirati: ";
+    if(brojac1)std::cout << "Unesite ID nekretnine koju zelite azurirati/[0] - za izlaz: ";
+    else{
+         std::cout << "\nNema dostupnih nekretnina.\n";
+         return;
+    }
     std::cin >> izbor;
+
+    if(izbor<=0 && izbor>99)return;
+    
 
     // Otvaranje datoteke za pisanje (temp.txt)
     std::ofstream tempFile("temp.txt");
@@ -412,26 +442,126 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
     }
 
     inputFile.open("nekretnine.txt");
+    std::cout << "Unesite nove informacije o nekretnini:" << std::endl;
 
     // Preskakanje odabrane nekretnine
     while (std::getline(inputFile, line))
+{
+    std::istringstream iss(line);
+    tokens.clear();
+
+    std::string token;
+    while (std::getline(iss, token, ','))
     {
-        std::istringstream iss(line);
-        tokens.clear();
+        tokens.push_back(token);
+    }
+        int indikator=0;
 
-        std::string token;
-        while (std::getline(iss, token, ','))
+
+    if (tokens.size() >= 7 && tokens[3] == korisnickoIme && std::stoi(tokens[0]) == izbor && tokens[9]=="1")
+    {
+            std::string tipN; // Tip nekretnine (npr. "Stan", "Kuća", "Poslovni prostor")
+            std::string adresa;
+            double povrsina;
+            int brojSoba;
+            std::string opis;
+            double cena;
+
+            std::cout << "Unesite ponovo tip nekretnine: ";
+            std::cin >> tipN;
+            if (tipN.empty())
+            {
+                std::cout << "Tip nekretnine ne sme biti prazan. Molimo vas ponovite unos." << std::endl;
+            }
+
+            std::cout << "Unesite ponovo adresu nekretnine: ";
+            std::cin.ignore();
+            std::getline(std::cin, adresa);
+            if (adresa.empty())
+            {
+                std::cout << "Adresa ne sme biti prazna. Molimo vas ponovite unos." << std::endl;
+            }
+
+            std::cout << "Unesite ponovo povrsinu nekretnine (m^2): ";
+            std::cin >> povrsina;
+            if (povrsina <= 0)
+            {
+                std::cout << "Povrsina mora biti pozitivan broj. Molimo vas ponovite unos." << std::endl;
+            }
+
+            std::cout << "Unesite ponovo broj soba nekretnine: ";
+            std::cin >> brojSoba;
+            if (brojSoba <= 0)
+            {
+                std::cout << "Broj soba mora biti pozitivan broj. Molimo vas ponovite unos." << std::endl;
+            }
+
+            std::cout << "Unesite ponovo kratak opis: ";
+            std::cin.ignore();
+            std::getline(std::cin, opis);
+
+            std::cout << "Prodajna cijena nekretnine ce biti vece za 5% u odnosu na unesenu cijenu - Unesite ponovo cijenu nekretnine: ";
+            std::cin >> cena;
+            if (cena <= 0)
+            {
+                std::cout << "Cijena mora biti pozitivan broj. Molimo vas ponovite unos." << std::endl;
+            }
+            else
+                cena = cena + (cena / 100 * 5);
+
+            std::cout << "  > Automatski unos informacija o vlasniku." << std::endl;
+
+            //------------PRODAJA----------------------------------------------------------------------------------------------------------
+            std::string svrha;
+            std::cout << "Unesite ponovo namjenu (moguce opcije [NAJAM], [PRODAJA]): ";
+            std::cin >> svrha;
+            if (svrha.empty())
+            {
+                std::cout << "Tip nekretnine ne sme biti prazan. Molimo vas ponovite unos." << std::endl;
+            }
+            if (svrha == "PRODAJA")
+            {
+                svrha = "prodaja";
+            }
+            //----------------------------------------------------------------------------------------------------------------------
+
+            //----------NAJAM------------------------------------------------------------------------------------------------------------
+
+            else if (svrha == "NAJAM")
+            {
+                svrha = "najam";
+            }
+            else
+                std::cout << "Neispravno izabrana opcija.\n";
+            //----------------------------------------------------------------------------------------------------------------------
+
+             std::cout << "Zelite li sacuvati izmjene informacija o nekretnini? (Da/Ne): ";
+        std::string odgovor;
+        std::cin >> odgovor;
+        if (odgovor == "Da" || odgovor == "da")
         {
-            tokens.push_back(token);
-        }
+                tempFile << tokens[0]<<","<<tipN<<","<<adresa<<","<<korisnickoIme<<","<<povrsina<<","<<brojSoba<<","<<opis<<","<<cena<<","<<svrha << ","<<tokens[9]<<std::endl;
+                indikator=1;
+    std::cout << "Nove informacije su uspjesno unesene. Azuriranje ceka odobrenje agencije." << std::endl;
 
-        if (tokens.size() >= 7 && tokens[3] == korisnickoIme && std::stoi(tokens[0]) == izbor)
+            }
+            else if (odgovor == "Ne" || odgovor == "ne")
         {
-            // Preskoci ovu nekretninu
-            continue;
+            tempFile << line << std::endl; // Ako je odgovor "Ne", upisujemo originalnu liniju
+            indikator = 1;
+            std::cout << "Nove informacije nisu sačuvane." << std::endl;
         }
-
+            
+        else
+        {
+            std::cout << "Informacije nisu sačuvane." << std::endl;
+            continue; 
+        }
+        }
+        if(!indikator)
         tempFile << line << std::endl;
+        indikator=0;
+
     }
 
     inputFile.close();
@@ -439,10 +569,7 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
 
     remove("nekretnine.txt");
     rename("temp.txt", "nekretnine.txt");
-    std::cout << "Unesite nove informacije o nekretnini:" << std::endl;
-    slanje_ponude();
 
-    std::cout << "Nove informacije su uspjesno unesene. Azuriranje ceka odobrenje agencije." << std::endl;
 }
 bool Korisnik::prikaziListu(std::string korisnickoIme)
 {
