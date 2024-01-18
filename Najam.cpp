@@ -8,10 +8,10 @@
 #include <vector>
 #include <limits>
 
-void Korisnik::nekretnineZaNajam(){
+void Korisnik::nekretnineZaNajam()
+{
 
-
-    std::ifstream inputFile("nekretnine.txt"); 
+    std::ifstream inputFile("nekretnine.txt");
 
     if (!inputFile.is_open())
     {
@@ -24,16 +24,16 @@ void Korisnik::nekretnineZaNajam(){
     {
 
         std::istringstream iss(line1);
-        std::string  id,tip, adresa, vlasnik, brojSobaStr, opis,svrha,dostupnost;
+        std::string id, tip, adresa, vlasnik, brojSobaStr, opis, svrha, dostupnost;
         double povrsina, cijena;
         int brojSoba;
-        
+
         std::getline(iss, id, ',');
         std::getline(iss, tip, ',');
         std::getline(iss, adresa, ',');
         std::getline(iss, vlasnik, ',');
         iss >> povrsina;
-        iss.ignore(); 
+        iss.ignore();
         iss >> brojSoba;
         iss.ignore();
         std::getline(iss, opis, ',');
@@ -42,12 +42,14 @@ void Korisnik::nekretnineZaNajam(){
         std::getline(iss, svrha, ',');
         std::getline(iss, dostupnost);
 
-        if(dostupnost=="1" && svrha=="najam") std::cout <<"["<< id <<"]    " << tip <<" " <<adresa<<" " <<vlasnik<<" " <<povrsina<<" " <<brojSoba<<" " <<opis<<" " <<cijena<< std::endl;
+        if (dostupnost == "1" && svrha == "najam")
+            std::cout << "[" << id << "]    " << tip << " " << adresa << " " << vlasnik << " " << povrsina << " " << brojSoba << " " << opis << " " << cijena << std::endl;
     }
     inputFile.close();
 }
 
-void Korisnik::najam() {
+void Korisnik::najam()
+{
     std::string br;
     std::cout << "Unesite broj nekretnine koju zelite iznajmiti: ";
     std::cin >> br;
@@ -62,7 +64,8 @@ void Korisnik::najam() {
     std::ofstream outputFile("iznajmljivanje_nekretnina.txt", std::ios::app);
     std::ofstream tempFile("tempnekretnine.txt");
 
-    if (!inputFile.is_open() || !outputFile.is_open() || !tempFile.is_open()) {
+    if (!inputFile.is_open() || !outputFile.is_open() || !tempFile.is_open())
+    {
         std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
         return;
     }
@@ -71,34 +74,34 @@ void Korisnik::najam() {
     std::string ID;
 
     // Pretražujemo linije i kopiramo ih u odgovarajuće datoteke
-    while (std::getline(inputFile, novaLinija)) {
+    while (std::getline(inputFile, novaLinija))
+    {
         std::istringstream iss(novaLinija);
         std::getline(iss, ID, ',');
         ID.erase(std::remove_if(ID.begin(), ID.end(), ::isspace), ID.end());
 
-        if (ID == br) {
-              outputFile << imee << "," << prezimee << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
-            std::cout << "\nVas zahtjev za najam je u obradi.\n" << std::endl; // Pronađena odgovarajuća linija, kopiramo je
-        } else {
-            tempFile << novaLinija << '\n';  // Kopiramo sve ostale linije u temp datoteku
+        if (ID == br)
+        {
+            outputFile << imee << "," << prezimee << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
+            std::cout << "\nVas zahtjev za najam je u obradi.\n"
+                      << std::endl; // Pronađena odgovarajuća linija, kopiramo je
+        }
+        else
+        {
+            tempFile << novaLinija << '\n'; // Kopiramo sve ostale linije u temp datoteku
         }
     }
 
     inputFile.close();
     outputFile.close();
     tempFile.close();
-     std::remove("nekretnine.txt");
+    std::remove("nekretnine.txt");
     std::rename("tempnekretnine.txt", "nekretnine.txt");
 }
-
-
 
 void Korisnik::zavedi_najam()
 {
     int bp;
-    std::cout << "Unesite broj ponude ciji najam odobravate: ";
-    std::cin >> bp;
-
     std::ifstream inputFile2("iznajmljivanje_nekretnina.txt");
     std::ofstream outputFile("nekretnine.txt", std::ios::app);
     std::ofstream tempFile("temp.txt");
@@ -110,6 +113,26 @@ void Korisnik::zavedi_najam()
     }
 
     int redniBroj = 1;
+    std::string linija;
+    while (std::getline(inputFile2, linija))
+    {
+        std::cout << redniBroj << ": " << linija << std::endl;
+        redniBroj++;
+    }
+
+    std::cout << "Unesite broj ponude ciji najam odobravate: ";
+    std::cin >> bp;
+
+    inputFile2.close();
+    inputFile2.open("iznajmljivanje_nekretnina.txt");
+
+    if (!inputFile2.is_open())
+    {
+        std::cerr << "Greska prilikom ponovnog otvaranja datoteke." << std::endl;
+        return;
+    }
+    bool ok = false;
+    redniBroj = 1;
     std::string novaLinija1;
 
     while (std::getline(inputFile2, novaLinija1))
@@ -137,9 +160,13 @@ void Korisnik::zavedi_najam()
             iss.ignore();
             std::getline(iss, svrha, ',');
             std::getline(iss, dostupnostStr);
+            ok=true;
             if (dostupnostStr == "1")
-
+            {
                 dostupnostStr = "2";
+                std::cout<<"Uspjesno ste potvrdili najam."<<std::endl;
+            }
+
             outputFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << "," << opis << "," << cijena << "," << svrha << ',' << dostupnostStr << std::endl;
         }
         else
@@ -148,6 +175,8 @@ void Korisnik::zavedi_najam()
         }
         redniBroj++;
     }
+    if(!ok)
+    std::cout<<"Unijeli ste pogresan broj."<<std::endl;
     inputFile2.close();
     outputFile.close();
     tempFile.close();
@@ -155,5 +184,4 @@ void Korisnik::zavedi_najam()
     std::remove("iznajmljivanje_nekretnina.txt");
     std::rename("temp.txt", "iznajmljivanje_nekretnina.txt");
 
-    std::cout << "Zahtjev za najam je odobren." << std::endl;
 }
