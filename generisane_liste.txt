@@ -3,4 +3,5 @@ Bulevar Oslobođenja 88,usisaj,Jovan,1,uusisano
 Milana Topica 11,ofarbaj ogradu,jelena,0,
 Vojvođanska 122,okreciti,marko,0,
 Bulevar Oslobođenja 88,usisaj i obrisi,Jovan,1,obrisano
-Petra Pecije 10a,zadatak2,Jovan,0,
+Petra Pecije 10a,zadatak2,Jovan,1,-
+Petra Pecije 10a,zadacic,Jovan,0,

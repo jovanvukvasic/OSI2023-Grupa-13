@@ -240,6 +240,7 @@ void Korisnik::prijaviSe()
                             std::cin.ignore();
 
                             std::getline(std::cin, noviZadatak);
+                            std::cout << "\nUnesite korisnicko ime radnika : ";
 
                             std::string nik;
 
