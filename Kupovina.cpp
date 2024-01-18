@@ -116,6 +116,7 @@ void Korisnik::kupovina()
 
         else
         {
+            
             tempFile << novaLinija << '\n';
         }
     }

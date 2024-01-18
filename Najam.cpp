@@ -118,7 +118,7 @@ void Korisnik::najam()
     outputFile.close();
     tempFile.close();
 }
-void Korisnik::zavedi_najam()
+void Korisnik::upravljanje_statusom_transakcija_najma()
 {
     std::ifstream in2("iznajmljivanje_nekretnina.txt");
 
