@@ -116,7 +116,7 @@ void Korisnik::kupovina()
 
         else
         {
-            
+
             tempFile << novaLinija << '\n';
         }
     }
@@ -173,7 +173,7 @@ void Korisnik::upravljanje_statusom_transakcija_kupovine()
     in2.close();
     std::cout << "\n----------------------------------------------------------------------------\n";
 
-    std::cout << "Unesite 1 ako zelite da odobrite prodaju ili 0 ako ne zelite: ";
+    std::cout << "Unesite [ 1 ] ako zelite da odobrite prodaju ili [ 0 ] ako ne zelite: ";
     int odobravanje;
     std::cin >> odobravanje;
     std::cout << "\n----------------------------------------------------------------------------\n\n";
@@ -203,7 +203,6 @@ void Korisnik::upravljanje_statusom_transakcija_kupovine()
         std::ifstream file3("stanje_racuna.txt");
         if (!file3.is_open())
         {
-            std::cerr << "Greska prilikom otvaranja datoteka5." << std::endl;
             std::ofstream createFile5("stanje_racuna.txt");
             if (!createFile5.is_open())
             {
@@ -223,7 +222,7 @@ void Korisnik::upravljanje_statusom_transakcija_kupovine()
         std::ofstream file4("stanje_racuna.txt");
         if (!file4.is_open())
         {
-            std::cerr << "Greska prilikom otvaranja datoteka6." << std::endl;
+            std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
             return;
         }
 
@@ -316,7 +315,7 @@ void Korisnik::upravljanje_statusom_transakcija_kupovine()
 
         while (std::getline(in21, linija1))
         {
-            std::string immm, prezzz, kor, id, tip, adresa, vlasnik;
+            std::string immm, prezzz, kor, id, tip, adresa, vlasnik, jedan, dva, tri, cijena;
             std::istringstream iss(linija1);
 
             std::getline(iss, immm, ',');
@@ -329,6 +328,10 @@ void Korisnik::upravljanje_statusom_transakcija_kupovine()
                 std::getline(iss, tip, ',');
                 std::getline(iss, adresa, ',');
                 std::getline(iss, vlasnik, ',');
+                std::getline(iss, jedan, ',');
+                std::getline(iss, dva, ',');
+                std::getline(iss, tri, ',');
+                std::getline(iss, cijena, ',');
                 //-----------------------------------------------GENERISANJE UGOVORA---------------------------------------
                 std::string naziv;
                 naziv = "nekretnina" + id + ".txt";
@@ -336,11 +339,68 @@ void Korisnik::upravljanje_statusom_transakcija_kupovine()
 
                 if (nekretninaFile.is_open())
                 {
-                    nekretninaFile << "                         ~ Ugovor o kupovini ~\n"
+                    std::ifstream file("nalozi.txt");
+                    std::string line;
+                    std::string pr, ki, si, i, p, bt, ea;
+                    std::string vlasnikIme, vlasnikPrezime;
+
+
+                    while (std::getline(file, line))
+                    {
+
+                        std::istringstream iss(line);
+                        if (!(iss >> pr >> ki >> si >> i >> p >> bt >> ea))
+                        {
+                            continue;
+                        }
+                        else {
+                            if(ki==vlasnik){
+                                vlasnikIme=i;
+                                vlasnikPrezime=p;
+                            }
+                        }
+                    }
+                    file.close();
+
+                    nekretninaFile << "                         ~ UGOVOR O KUPOVINI ~\n"
                                    << std::endl;
-                    nekretninaFile << "  Kupac: " << immm << " " << prezzz << std::endl;
-                    nekretninaFile << "  Korisnicko ime kupca: " << kor << std::endl;
-                    nekretninaFile << "  Korisnicko ime vlasnika: " << vlasnik << std::endl;
+                    nekretninaFile << "  STRANE UGOVORA: " << std::endl;
+                    nekretninaFile << "     Kupac: " << immm << " " << prezzz << std::endl;
+                    nekretninaFile << "     Korisnicko ime kupca: " << kor <<"\n" << std::endl;
+                    nekretninaFile << "     Vlasnik: " << vlasnikIme << " " << vlasnikPrezime<< std::endl;
+                    nekretninaFile << "     Korisnicko ime vlasnika: " << vlasnik <<"\n" << std::endl;
+
+
+                    nekretninaFile << " PREDMET UGOVORA: " << std::endl;
+                    nekretninaFile << " - Prodavatelj prodaje, a Kupac kupuje nekretninu opisanu u prilogu ovoga \n ugovora, uključujući sva prava, terete i odgovornosti vezane uz nju. " <<"\n"<< std::endl;
+
+                    nekretninaFile << " CIJENA I NAČIN PLAĆANJA: " << std::endl;
+                    nekretninaFile << " - Kupac će uplatiti iznos u skladu s dogovorenim uslovima plaćanja." <<"\n"<< std::endl;
+
+                     nekretninaFile << " PRAVA I OBAVEZE STRANA: " << std::endl;
+                    nekretninaFile << " 4.1. Prodavatelj osigurava da je vlasnik nekretnine, te da ista ne tereti\n     bilo kakav značajan teret ili obaveza osim onih navedenih u ovom \n     ugovoru." <<"\n"<< std::endl;
+
+                    nekretninaFile << " 4.2. Kupac je dužan platiti cijenu nekretnine u rokovima navedenim u ovom \n     ugovoru te poduzeti sve potrebne korake za prenos vlasništva." <<"\n"<< std::endl;
+
+                     nekretninaFile << " PRENOS VLASNISTVA: " << std::endl;
+                    nekretninaFile << " - Vlasništvo nad nekretninom prenijeće se na Kupca po primitku cjelokupnog \n iznosa kupoprodajne cijene." <<"\n"<< std::endl;
+
+                    
+                     nekretninaFile << " GARANCIJA: " << std::endl;
+                    nekretninaFile << " - Kupac će uplatiti garanciju u iznosu od "<< cijena <<" [KM], prilikom potpisivanja\n ovog ugovora, koja će se uračunati u konačnu kupoprodajnu cijenu." <<"\n"<< std::endl;
+                     
+                     nekretninaFile << " RASKID UGOVORA: " << std::endl;
+                    nekretninaFile << " 7.1. Ovaj ugovor može se raskinuti u slučaju ozbiljnog kršenja od strane jedne od \n     strana." <<"\n"<< std::endl;
+
+                    nekretninaFile << " 7.2. U slučaju raskida ugovora, garancija će se zadržati od strane Prodavatelja." <<"\n"<< std::endl;
+
+                    nekretninaFile << " NADLEŽNOST I PRIMJENA PRAVA: " << std::endl;
+                    nekretninaFile << " Ovaj ugovor podliježe zakonima Bosne i Hercegovine i sve sporove proizašle iz ovog \n ugovora rješavaće nadležni sud u Banjoj Luci." <<"\n"<< std::endl;
+
+                    nekretninaFile << " \n\n - Potpisani: \n" << std::endl;
+                    nekretninaFile << "     Prodavatelj: ___________________________\n     Datum: _______________" <<"\n"<< std::endl;
+                    nekretninaFile << "     Kupac: ___________________________\n     Datum: _______________" <<"\n"<< std::endl;
+
                     nekretninaFile.close();
                 }
 

@@ -15,9 +15,9 @@
 16,Kuca,Save Mandica,Nevena,100,4,uca na dva sprata,105000,najam,1
 17,Stan,Kej,Nevena,70,2,Pogled na more,94500,prodaja,0
 18,Kuca,Savski nasip,Nevena,72,4,Fin pogled na more,94500,prodaja,0
-19,Kuca,Savski nasip,Nevena,72,4,Fin pogled na more,94500,prodaja,1
+19,Kuca,Savski nasip,Nevena,72,4,Fin pogled na more,94500,prodaja,2
 20,Stan,Adresa,marko,2421,11,KRATAK OPIS,129720,prodaja,2
-21,Stan,adresa,marko,45,3,opis,472.5,najam,1
+21,Stan,adresa,marko,45,3,opis,472.5,najam,2
 22,Kuca,Save Mandica 11,Nevena,100,4,Kuca na dva sprata,105000,prodaja,0
 23,Stan,Vidovdanska BB,Nevena,60,2,Dvosoban stan,89250,prodaja,2
 24,Kuca,Marka Kraljevica 12,marko,123,3,Kratak opis,1294.65,prodaja,2

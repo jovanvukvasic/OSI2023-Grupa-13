@@ -121,7 +121,7 @@ void Korisnik::slanje_ponude()
     }
 }
 
-void Korisnik::pregled_trenutnih_ponuda()
+int Korisnik::pregled_trenutnih_ponuda()
 {
     std::ifstream inputFile("poslate_ponude.txt");
 
@@ -153,7 +153,12 @@ void Korisnik::pregled_trenutnih_ponuda()
         std::cout << "[" << redniBroj << "]    " << tip << " " << adresa << " " << vlasnik << " " << povrsina << " " << brojSoba << " " << opis << " " << cijena << std::endl;
         redniBroj++;
     }
+    if(redniBroj==1){
+        std::cout<<"\n> Trenutno nema dostupnih ponuda.\n"<<std::endl;
+        return 0;
+    }
     inputFile.close();
+    return 1;
 }
 
 void Korisnik::registrovanje_ponude()
@@ -170,6 +175,7 @@ void Korisnik::registrovanje_ponude()
 
     std::string line;
     std::string ID;
+    int brojac111=0;
 
     while (std::getline(file, line))
     {
@@ -183,7 +189,8 @@ void Korisnik::registrovanje_ponude()
     file.close();
     //---------------------------------------------Kraj dijela sa trazenje IDa---------------------------------------------
 
-    pregled_trenutnih_ponuda();
+    brojac111 = pregled_trenutnih_ponuda();
+    if (brojac111==0)return;
     int bp;
     std::cout << "Unesite broj ponude koju zelite registrovati: " << std::endl;
     std::cin >> bp;
@@ -209,6 +216,9 @@ void Korisnik::registrovanje_ponude()
 
             outputFile << novaLinija1 << ",";
             outputFile << "1\n";
+
+    std::cout << "Ponuda je uspesno registrovana i uklonjena iz poslatih ponuda." << std::endl;
+
         }
 
         else
@@ -225,7 +235,6 @@ void Korisnik::registrovanje_ponude()
     std::remove("poslate_ponude.txt");
     std::rename("temp_poslate_ponude.txt", "poslate_ponude.txt");
 
-    std::cout << "Ponuda je uspesno registrovana i uklonjena iz poslatih ponuda." << std::endl;
 }
 
 #include <fstream>

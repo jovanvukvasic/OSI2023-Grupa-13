@@ -72,7 +72,7 @@ void Korisnik::prijaviSe()
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [NAJAM], [ODJAVA] ....\n";
             if (pr == "4")
-                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [UPRAVLJANJE], [BRISANJE] ,[PREGLED],[LISTAZADATAKA]....\n";
+                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [UPRAVLJANJE], [BRISANJE], [PREGLED], [LISTAZADATAKA]\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
@@ -123,6 +123,10 @@ void Korisnik::prijaviSe()
 
                     inputF2.close();
                 }
+                if (pr == "6")
+                {
+                    prikaz_informacija_o_agenciji();
+                }
                 // prikaz informacija o transakcijama-----------------------------------------------
                 std::cout << "\n"
                           << korisnickoIme << "> ";
@@ -142,10 +146,6 @@ void Korisnik::prijaviSe()
                         slanje_ponude();
                     else if (ind2 == "AZURIRANJE")
                         azuriranje_informacija_o_nekretnini();
-                }
-                else if (pr == "6")
-                {
-                        prikaz_informacija_o_agenciji();
                 }
 
                 //----------------------------------KUPOVINA---------------------------------
@@ -173,8 +173,10 @@ void Korisnik::prijaviSe()
                 {
                     if (ind2 == "REGISTROVANJE")
                         registrovanje_ponude();
-                    else if (ind2 == "PREGLED")
-                        pregled_trenutnih_ponuda();
+                    else if (ind2 == "PREGLED"){
+                        int p;
+                        p=pregled_trenutnih_ponuda();
+                    }
                     else if (ind2 == "UPRAVLJANJE")
                     {
                         std::string ind3;
