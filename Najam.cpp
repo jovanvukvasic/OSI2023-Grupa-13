@@ -98,15 +98,15 @@ void Korisnik::najam()
     std::remove("nekretnine.txt");
     std::rename("tempnekretnine.txt", "nekretnine.txt");
 }
-
 void Korisnik::zavedi_najam()
 {
     int bp;
     std::ifstream inputFile2("iznajmljivanje_nekretnina.txt");
     std::ofstream outputFile("nekretnine.txt", std::ios::app);
     std::ofstream tempFile("temp.txt");
+    std::ofstream file("prihodi_rashodi.txt", std::ios::app);
 
-    if (!inputFile2.is_open() || !outputFile.is_open() || !tempFile.is_open())
+    if (!inputFile2.is_open() || !outputFile.is_open() || !tempFile.is_open() || !file.is_open())
     {
         std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
         return;
@@ -160,11 +160,22 @@ void Korisnik::zavedi_najam()
             iss.ignore();
             std::getline(iss, svrha, ',');
             std::getline(iss, dostupnostStr);
-            ok=true;
+            ok = true;
             if (dostupnostStr == "1")
             {
                 dostupnostStr = "2";
-                std::cout<<"Uspjesno ste potvrdili najam."<<std::endl;
+                std::cout << "Uspjesno ste potvrdili najam." << std::endl;
+                std::cout << "Uspjesno ste potvrdili kupovinu." << std::endl;
+                auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+                std::tm *tmNow = std::localtime(&time);
+                char buffer[20]; // dovoljno velik bafer za formatiranje
+                std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
+
+                file << "-----------------------------------------------------------------------------------------" << std::endl;
+                file << buffer << std::endl;
+                cijena = cijena / 105 * 5;
+                file << "Prihod: " << cijena << std::endl;
+                file << "Rashod: 0" << std::endl;
             }
 
             outputFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << "," << opis << "," << cijena << "," << svrha << ',' << dostupnostStr << std::endl;
@@ -175,13 +186,13 @@ void Korisnik::zavedi_najam()
         }
         redniBroj++;
     }
-    if(!ok)
-    std::cout<<"Unijeli ste pogresan broj."<<std::endl;
+    if (!ok)
+        std::cout << "Unijeli ste pogresan broj." << std::endl;
     inputFile2.close();
     outputFile.close();
     tempFile.close();
+     file.close();
 
     std::remove("iznajmljivanje_nekretnina.txt");
     std::rename("temp.txt", "iznajmljivanje_nekretnina.txt");
-
 }
