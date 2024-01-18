@@ -179,6 +179,8 @@ void Korisnik::prijaviSe()
                         std::cin >> ind3;
                         if (ind3 == "3")
                             genersanje_izvjestaja_o_prihodima_i_rashodima();
+                        if(ind3 == "4")
+                            generisanje_izvjestaja_o_stanju_racuna();
                     }
                     else if (ind2 == "LISTA")
                     {
