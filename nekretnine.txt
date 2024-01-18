@@ -1,14 +1,14 @@
-1,Stan,Ulica Kralja Petra 13,marko,65.5,2,Nov stan u centru grada sa terasom,80000,najam,1
-2,Kuća,Zlatiborska 25,marko,120,4,Prostrana kuća sa dvorištem i garažom,150000,prodaja,1
-3,Poslovni prostor,Industrijska 3,marko,210,0,Poslovni prostor u industrijskoj zoni,50000,najam,1
-4,Stan,Ulica Cara Dušana 8,marko,48,1,neki opis,55000,prodaja,0
-5,Kuća,Vojvođanska 122,marko,180,5,Kuća sa pogledom na reku,200000,najam,1
-6,Apartman,Ulica Laze Kostića 5,marko,40,1,Apartman u blizini plaže,70000,najam,1
-7,Stan,Bulevar Oslobođenja 88,marko,72,3,Prostran i svetao stan,90000,prodaja,1
-8,Vikendica,Fruškogorska 45,marko,85,3,Vikendica u prirodi sa baštom,45000,najam,1
-9,Poslovni prostor,Mihajla Pupina 10,marko,150,0,Moderno opremljen prostor za kancelarije,120000,najam,1
-10,Stan,Ulica Jovana Subotića 15,marko,90,4,Stan u mirnom kraju sa parkom,100000,prodaja,0
-11,Kuca,Mlade Bosne 21,Nevena,110,4,uca sa bazenom,115500,najam,1
+1,Poslovan prostor,Mlade Bosne 21,Nevena,110,4,uca sa bazenom,115500,najam,1
+2,Stan,Vidovdanska bb,Nevena,45,1,Garsonjera,47250,najam,1
+3,Kuca,Save Madnica 18,Nevena,98,4,uca na dva sprata,105000,prodaja,1
+4,Kuca,Milana Topica 11,Nevena,77,2,vosoban stan,94500,prodaja,1
+5,Stan,Petra Pecije 10a,Nevena,80,2,vosoban stan,89250,najam,1
+6,Kuca,Save Mandica,Nevena,100,4,uca na dva sprata,105000,najam,1
+7,Stan,Kej,Nevena,70,2,Pogled na more,94500,prodaja,0
+8,Kuca,Savski nasip,Nevena,72,4,Fin pogled na more,94500,prodaja,0
+9,Kuca,Marka Kraljevica 10,marko,94,3,Fin pogled sa balkonom.,3675,prodaja,1
+10,Stan,Adresa,marko,2421,11,KRATAK OPIS,129720,prodaja,1
+11,Poslovan prostor,Mlade Bosne 21,Nevena,110,4,uca sa bazenom,115500,najam,1
 12,Stan,Vidovdanska bb,Nevena,45,1,Garsonjera,47250,najam,1
 13,Kuca,Save Madnica 18,Nevena,98,4,uca na dva sprata,105000,prodaja,1
 14,Kuca,Milana Topica 11,Nevena,77,2,vosoban stan,94500,prodaja,1
@@ -17,7 +17,8 @@
 17,Stan,Kej,Nevena,70,2,Pogled na more,94500,prodaja,0
 18,Kuca,Savski nasip,Nevena,72,4,Fin pogled na more,94500,prodaja,0
 19,Kuca,Marka Kraljevica 10,marko,94,3,Fin pogled sa balkonom.,3675,prodaja,1
-20,Stan,Adresa,marko,2421,11,KRATAK OPIS,129720,prodaja,1
 21,Stan,adresa,marko,45,3,opis,472.5,najam,1
 22,Kuca,Save Mandica 11,Nevena,100,4,Kuca na dva sprata,105000,,prodaja0
 23,Stan,Vidovdanska BB,Nevena,60,2,Dvosoban stan,89250,najam,1
+24,Kuca,Marka Kraljevica 12,marko,123,3,Kratak opis,1294.65,najam,1
+20,Stan,Adresa,marko,2421,11,KRATAK OPIS,129720,prodaja,2

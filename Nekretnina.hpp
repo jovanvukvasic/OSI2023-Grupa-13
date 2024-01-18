@@ -2,6 +2,7 @@
 #include "Korisnik.h"
 #include <vector>
 #include <algorithm> 
+#include <iomanip>
 
 class Nekretnina {
 private:
@@ -24,15 +25,15 @@ public:
 
     // Metoda za prikaz informacija o nekretnini
     void prikaziInformacije() const {
-        std::cout << "\n[" << id << "]"
-                  << "    " << tip
-                  << ", (" << adresa
-                  << "), svrha objekta: " << svrha
-                  << " - " << cena <<" KM"
-                  << std::endl;
-    }
+        if(id.size()==1)std::cout << std::setw(5) << std::setw(6) << "[ "<< id <<" ]"<< "  | " << std::setw(18)  << tip <<" | " << std::setw(29)<< adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << cena << std::setw(3) << "KM" << " | " << std::endl;    
+        else std::cout << std::setw(5) << std::setw(6) << "[ "<< id <<" ]"<< " | " << std::setw(18)  << tip << " | " << std::setw(29)<< adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << cena << std::setw(3) << "KM" << " | " << std::endl;    
+
+
+}
 
     void prikaziInformacijeKonkretno() const {
+    std::cout << "------------------------------------------------------"<< std::endl;    
+
         std::cout << "\n[" << id << "]"
                   << "\n\n    Tip: " << tip
                   << "\n    Adresa: " << adresa
@@ -42,8 +43,10 @@ public:
                   << "\n    Cena: " << cena <<" KM"
                   << "\n    Vlasnik: " << vlasnik
                   << "\n    Svrha: " << svrha
-                  << "\n    Dostupnost: " << (dostupnost=="1" ? "Dostupno" : "Nije dostupno")
+                  << "\n    Dostupnost: " << "Dostupno"
                   << std::endl;
+    std::cout << "\n------------------------------------------------------"<< std::endl;    
+
     }
 
 
