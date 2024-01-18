@@ -1,5 +1,5 @@
-Vojvođanska 122,baci smece,Jovan,0
-Bulevar Oslobođenja 88,usisaj,Jovan,baceno
-Milana Topica 11,ofarbaj ogradu,jelena,0
-Vojvođanska 122,okreciti,marko,0
-Bulevar Oslobođenja 88,usisaj i obrisi,Jovan,obrisano i usisano
+Vojvođanska 122,baci smece,Jovan,1,-
+Bulevar Oslobođenja 88,usisaj,Jovan,1,uusisano
+Milana Topica 11,ofarbaj ogradu,jelena,0,
+Vojvođanska 122,okreciti,marko,0,
+Bulevar Oslobođenja 88,usisaj i obrisi,Jovan,1,obrisano
