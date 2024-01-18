@@ -72,7 +72,7 @@ void Korisnik::prijaviSe()
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [NAJAM], [ODJAVA] ....\n";
             if (pr == "4")
-                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [ZAVOD], [BRISANJE] ,[PREGLED]....\n";
+                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [ZAVOD], [BRISANJE] ,[PREGLED],[LISTAZADATAKA]....\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
@@ -202,7 +202,7 @@ void Korisnik::prijaviSe()
                             else if(ind3=="1")
                             generisanje_izjestaja_o_transakcijama();
                     }
-                    else if (ind2 == "LISTA")
+                    else if (ind2 == "LISTAZADATAKA")
                     {
 
                         std::vector<std::string> odabraneAdrese;
@@ -246,7 +246,7 @@ void Korisnik::prijaviSe()
                             std::getline(std::cin, nik);
 
                             std::ofstream file("generisane_liste.txt", std::ios::app);
-                            file << odabranaAdresa << "," << noviZadatak << "," << nik << ",0\n";
+                            file << odabranaAdresa << "," << noviZadatak << "," << nik << ",0"<<","<<"\n";
 
                             file.close();
 
