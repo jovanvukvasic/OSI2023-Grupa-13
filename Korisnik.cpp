@@ -595,3 +595,23 @@ void Korisnik::generisanje_izvjestaja_o_stanju_racuna()
     std::cout << "Trenutno vrijeme i datum: " << buffer << std::endl;
     std::cout << std::fixed <<  std::setprecision(2) << "Stanje ukupno: " << prihod << std::endl;
 }
+
+
+void Korisnik::generisanje_izjestaja_o_transakcijama()
+{
+  std::ifstream file("transakcije.txt");
+
+    if (!file.is_open())
+    {
+        std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
+        return;
+    }
+
+    std::string linija;
+    while (std::getline(file, linija))
+    {
+        std::cout << linija << std::endl;
+    }
+
+    file.close();  
+}
