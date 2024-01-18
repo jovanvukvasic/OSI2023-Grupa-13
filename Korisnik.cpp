@@ -640,7 +640,7 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
             return;
         }
 
-        std::cout << "\nDa li zelite oznaciti zadatak kao urađen (0) ili neuradjen (1): " << std::endl;
+        std::cout << "\nDa li zelite oznaciti zadatak kao urađen (1) ili neuradjen (0): " << std::endl;
         char status;
         std::cin >> status;
 
