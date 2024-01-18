@@ -4,7 +4,7 @@
 
 void Korisnik::prijaviSe()
 {
-    int ind=0;
+    int ind = 0;
     std::cout << "~ Prijava na sistem ~\n";
     std::cout << "Korisnicko ime: ";
     std::cin >> korisnickoIme;
@@ -81,10 +81,11 @@ void Korisnik::prijaviSe()
 
             while (ind2 != "ODJAVA")
             {
-                if(pr=="2" && ind==0){
-                    ind=1; 
+                if (pr == "2" && ind == 0)
+                {
+                    ind = 1;
                     std::ifstream inputF2("ugovori.txt");
-                    std::string novaL1,nekretnina,kupac;
+                    std::string novaL1, nekretnina, kupac;
 
                     while (std::getline(inputF2, novaL1))
                     {
@@ -93,11 +94,12 @@ void Korisnik::prijaviSe()
                         std::getline(iss, kupac);
                         if (korisnickoIme == kupac)
                         {
-                            std::cout<<" \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje."<<std::endl;
-                            std::cout <<"   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
+                            std::cout << " \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje." << std::endl;
+                            std::cout << "   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: "
+                                      << "nekretnina" + nekretnina << std::endl;
                         }
                     }
-                    
+
                     inputF2.close();
                 }
                 // prikaz informacija o transakcijama-----------------------------------------------
@@ -129,8 +131,7 @@ void Korisnik::prijaviSe()
                 //----------------------------------KUPOVINA---------------------------------
                 else if (pr == "2")
                 {
-                    
-                    
+
                     if (ind2 == "KUPOVINA")
                     {
                         nekretnineZaKupovinu();
@@ -179,8 +180,10 @@ void Korisnik::prijaviSe()
                         std::cin >> ind3;
                         if (ind3 == "3")
                             genersanje_izvjestaja_o_prihodima_i_rashodima();
-                        if(ind3 == "4")
+                        else if (ind3 == "4")
                             generisanje_izvjestaja_o_stanju_racuna();
+                       // else if (ind3 == "1")
+                         //   generisanje_izjestaja_o_transakcijama();
                     }
                     else if (ind2 == "LISTA")
                     {
