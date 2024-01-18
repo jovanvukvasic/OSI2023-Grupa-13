@@ -25,8 +25,8 @@ public:
 
     // Metoda za prikaz informacija o nekretnini
     void prikaziInformacije() const {
-        if(id.size()==1)std::cout << std::setw(5) << std::setw(6) << "[ "<< id <<" ]"<< "  | " << std::setw(18)  << tip <<" | " << std::setw(29)<< adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << cena << std::setw(3) << "KM" << " | " << std::endl;    
-        else std::cout << std::setw(5) << std::setw(6) << "[ "<< id <<" ]"<< " | " << std::setw(18)  << tip << " | " << std::setw(29)<< adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << cena << std::setw(3) << "KM" << " | " << std::endl;    
+        if(id.size()==1)std::cout << std::setw(5) << std::setw(6) << "[ "<< id <<" ]"<< "  | " << std::setw(18)  << tip <<" | " << std::setw(29)<< adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << povrsina <<" | "<< std::setw(8) << std::setw(10) << cena << std::setw(3) << "KM" << " | " << std::endl;    
+        else std::cout << std::setw(5) << std::setw(6) << "[ "<< id <<" ]"<< " | " << std::setw(18)  << tip << " | " << std::setw(29)<< adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << povrsina << " | "<<std::setw(8) << std::setw(10) << cena << std::setw(3) << "KM" << " | " << std::endl;    
 
 
 }
