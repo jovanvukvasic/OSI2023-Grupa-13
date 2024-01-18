@@ -175,7 +175,7 @@ void Korisnik::prijaviSe()
                         registrovanje_ponude();
                     else if (ind2 == "PREGLED")
                         pregled_trenutnih_ponuda();
-                    else if (ind2 == "ZAVOD")
+                    else if (ind2 == "UPRAVLJANJE")
                     {
                         std::string ind3;
                         std::cout << "1. Odobri kupovinu" << std::endl;
