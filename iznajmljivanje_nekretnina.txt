@@ -1,1 +1,0 @@
-21,Stan,adresa,marko,45,3,opis,472.5,najam,1
