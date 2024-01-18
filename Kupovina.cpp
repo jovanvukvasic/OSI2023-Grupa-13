@@ -125,7 +125,7 @@ void Korisnik::kupovina()
     outputFile.close();
     tempFile.close();
 }
-    static double ukupna = 0;
+
 void Korisnik::zavedi_kupovina()
 {
     std::ifstream in2("kupovina_nekretnine.txt");
@@ -182,20 +182,47 @@ void Korisnik::zavedi_kupovina()
         std::ifstream inputFile("nekretnine.txt");
         if (!inputFile.is_open())
         {
-            std::cerr << "Nije moguce prikazati listu ponuda." << std::endl;
+            std::cerr << "Nije moguce prikazati listu ponuda1." << std::endl;
             return;
         }
+
         std::ofstream file("prihodi_rashodi.txt", std::ios::app);
         if (!file.is_open())
         {
-            std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
+            std::cerr << "Greska prilikom otvaranja datoteka2." << std::endl;
             return;
         }
 
         std::ofstream file2("transakcije.txt", std::ios::app);
         if (!file2.is_open())
         {
-            std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
+            std::cerr << "Greska prilikom otvaranja datoteka4." << std::endl;
+            return;
+        }
+        std::ifstream file3("stanje_racuna.txt");
+        if (!file3.is_open())
+        {
+            std::cerr << "Greska prilikom otvaranja datoteka5." << std::endl;
+            std::ofstream createFile5("stanje_racuna.txt");
+            if (!createFile5.is_open())
+            {
+                std::cerr << "Nije moguće kreirati datoteku 'stanje_racuna.txt'." << std::endl;
+            }
+        }
+        std::string ukupna;
+        file3 >> ukupna;
+        double ukupna1;
+        if (ukupna.empty())
+        {
+            ukupna1 = 0;
+        }
+        else
+            ukupna1 = std::stod(ukupna);
+        file3.close();
+        std::ofstream file4("stanje_racuna.txt");
+        if (!file4.is_open())
+        {
+            std::cerr << "Greska prilikom otvaranja datoteka6." << std::endl;
             return;
         }
 
@@ -240,16 +267,18 @@ void Korisnik::zavedi_kupovina()
                     std::tm *tmNow = std::localtime(&time);
                     char buffer[20]; // dovoljno velik bafer za formatiranje
                     std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
-                    
+
                     file << "-----------------------------------------------------------------------------------------" << std::endl;
                     file2 << "-----------------------------------------------------------------------------------------" << std::endl;
                     file << buffer << std::endl;
                     file2 << buffer << std::endl;
                     cijena1 = cijena1 / 105 * 5;
-                    ukupna = ukupna + cijena1;
-                    file2<<"+"<<cijena1<<" KM"<<std::endl;
-                    file << "Stanje na racunu: " << ukupna <<" KM"<< std::endl;
-                    file << "Prihod: " << cijena1 <<" KM"<< std::endl;
+                    ukupna1 = ukupna1 + cijena1;
+                    file4 << ukupna1;
+                    file4.close();
+                    file2 << "+" << cijena1 << " KM" << std::endl;
+                    file << "Stanje na racunu: " << ukupna1 << " KM" << std::endl;
+                    file << "Prihod: " << cijena1 << " KM" << std::endl;
                     file << "Rashod: 0 KM" << std::endl;
                 }
                 else
