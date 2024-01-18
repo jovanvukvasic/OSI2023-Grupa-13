@@ -4,7 +4,7 @@
 
 void Korisnik::prijaviSe()
 {
-    int ind=0;
+    int ind = 0;
     std::cout << "~ Prijava na sistem ~\n";
     std::cout << "Korisnicko ime: ";
     std::cin >> korisnickoIme;
@@ -81,10 +81,11 @@ void Korisnik::prijaviSe()
 
             while (ind2 != "ODJAVA")
             {
-                if(pr=="2" && ind==0){
-                    ind=1; 
+                if (pr == "2" && ind == 0)
+                {
+                    ind = 1;
                     std::ifstream inputF2("ugovori.txt");
-                    std::string novaL1,nekretnina,kupac;
+                    std::string novaL1, nekretnina, kupac;
 
                     while (std::getline(inputF2, novaL1))
                     {
@@ -93,17 +94,19 @@ void Korisnik::prijaviSe()
                         std::getline(iss, kupac);
                         if (korisnickoIme == kupac)
                         {
-                            std::cout<<" \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje."<<std::endl;
-                            std::cout <<"   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
+                            std::cout << " \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje." << std::endl;
+                            std::cout << "   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: "
+                                      << "nekretnina" + nekretnina << std::endl;
                         }
                     }
-                    
+
                     inputF2.close();
                 }
-                if(pr=="3" && ind==0){
-                    ind=1; 
+                if (pr == "3" && ind == 0)
+                {
+                    ind = 1;
                     std::ifstream inputF2("ugovori.txt");
-                    std::string novaL1,nekretnina,kupac;
+                    std::string novaL1, nekretnina, kupac;
 
                     while (std::getline(inputF2, novaL1))
                     {
@@ -112,11 +115,12 @@ void Korisnik::prijaviSe()
                         std::getline(iss, kupac);
                         if (korisnickoIme == kupac)
                         {
-                            std::cout<<" \nVas najam je odobren, ugovor je generisan i spreman za potpisivanje."<<std::endl;
-                            std::cout <<"   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
+                            std::cout << " \nVas najam je odobren, ugovor je generisan i spreman za potpisivanje." << std::endl;
+                            std::cout << "   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: "
+                                      << "nekretnina" + nekretnina << std::endl;
                         }
                     }
-                    
+
                     inputF2.close();
                 }
                 // prikaz informacija o transakcijama-----------------------------------------------
@@ -148,8 +152,7 @@ void Korisnik::prijaviSe()
                 //----------------------------------KUPOVINA---------------------------------
                 else if (pr == "2")
                 {
-                    
-                    
+
                     if (ind2 == "KUPOVINA")
                     {
                         nekretnineZaKupovinu();
@@ -197,9 +200,9 @@ void Korisnik::prijaviSe()
                         std::cin >> ind3;
                         if (ind3 == "2")
                             genersanje_izvjestaja_o_prihodima_i_rashodima();
-                    else if(ind3 == "3")
+                        else if (ind3 == "3")
                             generisanje_izvjestaja_o_stanju_racuna();
-                            else if(ind3=="1")
+                        else if (ind3 == "1")
                             generisanje_izjestaja_o_transakcijama();
                     }
                     else if (ind2 == "LISTAZADATAKA")
@@ -208,7 +211,6 @@ void Korisnik::prijaviSe()
                         std::vector<std::string> odabraneAdrese;
 
                         std::string odabranaAdresa;
-                        std::cout << "Dostupne nekretnine:" << std::endl;
 
                         std::vector<Nekretnina> dostupneNekretnine = prikazDostupnihNekretnina();
 
@@ -223,17 +225,30 @@ void Korisnik::prijaviSe()
 
                             std::cout << "Unesite redni broj nekretnine za koju želite generisati listu zadataka (0 za kraj): ";
                             int redniBroj;
-                            std::cin >> redniBroj;
+                           // std::cin >> redniBroj;
+                           // int redniBroj;
+                            if (!(std::cin >> redniBroj) || redniBroj < 0 || redniBroj > dostupneNekretnine.size())
+                            {
+                                std::cout << "Unos je nevažeći. Molimo unesite ispravan redni broj." << std::endl;
+                                std::cin.clear();                                                   // Očisti zastavice greške
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Odbaci nevalidan unos
+                                continue;                                                           // Preskoči ostatak iteracije petlje
+                            }
+
+                            if (redniBroj == 0)
+                            {
+                                break; // Izlaz iz petlje ako je uneseno 0
+                            }
 
                             if (redniBroj == 0 || redniBroj > dostupneNekretnine.size())
                             {
-                                break;
+                                return;
                             }
 
                             odabranaAdresa = dostupneNekretnine[redniBroj - 1].getAdresa();
                             odabraneAdrese.push_back(odabranaAdresa);
 
-                            std::cout << "\nUnesite zadatke za nekretninu i radnika: " << odabranaAdresa << std::endl;
+                            std::cout << "\nUnesite zadatak za nekretninu: " << odabranaAdresa << std::endl;
 
                             std::string noviZadatak;
 
@@ -247,7 +262,9 @@ void Korisnik::prijaviSe()
                             std::getline(std::cin, nik);
 
                             std::ofstream file("generisane_liste.txt", std::ios::app);
-                            file << odabranaAdresa << "," << noviZadatak << "," << nik << ",0"<<","<<"\n";
+                            file << odabranaAdresa << "," << noviZadatak << "," << nik << ",0"
+                                 << ","
+                                 << "\n";
 
                             file.close();
 
@@ -270,7 +287,8 @@ void Korisnik::prijaviSe()
                         std::cout << "\nTa opcija nije dostupna.\n";
                 }
             }
-            if(ind2=="ODJAVA")std::cout<<"> Upravo ste se odjavili sa sistema...\n";
+            if (ind2 == "ODJAVA")
+                std::cout << "> Upravo ste se odjavili sa sistema...\n";
             return;
         }
 
