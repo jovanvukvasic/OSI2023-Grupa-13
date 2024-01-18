@@ -56,4 +56,5 @@ public:
     void zavedi_kupovina();
     void zavedi_najam();
     void genersanje_izvjestaja_o_prihodima_i_rashodima();
+    void generisanje_izvjestaja_o_stanju_racuna();
 };
