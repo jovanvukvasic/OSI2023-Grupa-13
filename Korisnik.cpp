@@ -573,7 +573,7 @@ void Korisnik::genersanje_izvjestaja_o_prihodima_i_rashodima()
 
     if (!file.is_open())
     {
-        std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
+        std::cerr << "Trenutno nema izjestaja o prihodima i rashodima.txt'." << std::endl;
         return;
     }
 
@@ -592,7 +592,7 @@ void Korisnik::generisanje_izvjestaja_o_stanju_racuna()
 
     if (!file.is_open())
     {
-        std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
+        std::cerr << "Trenutno nema izjestaja o stanju racuna'." << std::endl;
         return;
     }
 
@@ -614,7 +614,7 @@ void Korisnik::generisanje_izjestaja_o_transakcijama()
 
     if (!file.is_open())
     {
-        std::cerr << "Greska prilikom otvaranja datoteke 'transakcije.txt'." << std::endl;
+        std::cerr << "Trenutno nema transakcija.txt'." << std::endl;
         return;
     }
 
