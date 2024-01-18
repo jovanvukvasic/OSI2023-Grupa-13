@@ -23,6 +23,14 @@ void Korisnik::nekretnineZaNajam()
     }
 
     std::string line1;
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::setw(5) << std::setw(6) << "  ID broj"
+              << "  | " << std::setw(18) << "Tip nekretnine"
+              << " | " << std::setw(29) << "Adresa nekretnine"
+              << " | " << std::setw(10) << "Svrha"
+              << " | " << std::setw(8) << std::setw(10) << "Cijena [KM]"
+              << "   | " << std::endl;
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
 
     while (std::getline(inputFile, line1))
     {
@@ -47,9 +55,19 @@ void Korisnik::nekretnineZaNajam()
         std::getline(iss, dostupnost);
 
         if (dostupnost == "1" && svrha == "najam")
-            std::cout << "[" << id << "]    " << tip << " " << adresa << " " << vlasnik << " " << povrsina << " " << brojSoba << " " << opis << " " << cijena << std::endl;
+        {
+            if (id.size() == 1)
+                std::cout << std::setw(5) << std::setw(6) << "[ " << id << " ]"
+                          << "  | " << std::setw(18) << tip << " | " << std::setw(29) << adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << cijena << std::setw(3) << "KM"
+                          << " | " << std::endl;
+            else
+                std::cout << std::setw(5) << std::setw(6) << "[ " << id << " ]"
+                          << " | " << std::setw(18) << tip << " | " << std::setw(29) << adresa << " | " << std::setw(10) << svrha << " | " << std::setw(8) << std::setw(10) << cijena << std::setw(3) << "KM"
+                          << " | " << std::endl;
+        }
     }
     inputFile.close();
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
 }
 
 void Korisnik::najam()
@@ -86,7 +104,7 @@ void Korisnik::najam()
 
         if (ID == br)
         {
-            outputFile << imee << "," << prezimee <<"," <<korisnickoIme<<"," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
+            outputFile << imee << "," << prezimee << "," << korisnickoIme << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
             std::cout << "\nVas zahtjev za najam je u obradi.\n"
                       << std::endl; // Pronađena odgovarajuća linija, kopiramo je
         }
@@ -99,16 +117,15 @@ void Korisnik::najam()
     inputFile.close();
     outputFile.close();
     tempFile.close();
-   
 }
 void Korisnik::zavedi_najam()
 {
-     std::ifstream in2("iznajmljivanje_nekretnina.txt");
+    std::ifstream in2("iznajmljivanje_nekretnina.txt");
 
     int redniBroj = 1;
     std::string linija;
     std::cout << "\n----------------------------------------------------------------------------\n\n";
- 
+
     while (std::getline(in2, linija))
     {
         std::string immm, prezzz, kor, id, tip, adresa, vlasnik, opis, svrha, dostupnostStr;
@@ -150,8 +167,9 @@ void Korisnik::zavedi_najam()
     int odobravanje;
     std::cin >> odobravanje;
     std::cout << "\n----------------------------------------------------------------------------\n\n";
-    
-    if(odobravanje == 1) {
+
+    if (odobravanje == 1)
+    {
         std::ifstream inputFile("nekretnine.txt");
         if (!inputFile.is_open())
         {
@@ -159,7 +177,7 @@ void Korisnik::zavedi_najam()
             return;
         }
         std::ofstream file("prihodi_rashodi.txt", std::ios::app);
-            if (!file.is_open())
+        if (!file.is_open())
         {
             std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
             return;
@@ -171,8 +189,6 @@ void Korisnik::zavedi_najam()
             std::cerr << "Greska pri otvaranju privremene datoteke." << std::endl;
             return;
         }
-
-
 
         std::string line1;
         while (std::getline(inputFile, line1))
@@ -270,7 +286,7 @@ void Korisnik::zavedi_najam()
                 if (nekretninaFile.is_open())
                 {
                     nekretninaFile << "                         ~ Ugovor o iznajmljivanju ~\n"
-                                << std::endl;
+                                   << std::endl;
                     nekretninaFile << "  Kupac: " << immm << " " << prezzz << std::endl;
                     nekretninaFile << "  Korisnicko ime kupca: " << kor << std::endl;
                     nekretninaFile << "  Korisnicko ime vlasnika: " << vlasnik << std::endl;
@@ -300,125 +316,122 @@ void Korisnik::zavedi_najam()
         std::filesystem::remove("iznajmljivanje_nekretnina.txt");
         std::filesystem::rename("temp1.txt", "iznajmljivanje_nekretnina.txt");
     }
-    else if(odobravanje == 0) {
+    else if (odobravanje == 0)
+    {
         std::ifstream inputFile("nekretnine.txt");
-    if (!inputFile.is_open())
-    {
-        std::cerr << "Nije moguce prikazati listu ponuda." << std::endl;
-        return;
-    }
-    // std::ofstream file("prihodi_rashodi.txt", std::ios::app);
-    //     if (!file.is_open())
-    // {
-    //     std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
-    //     return;
-    // }
-
-    std::ofstream tempFile("temp.txt");
-    if (!tempFile.is_open())
-    {
-        std::cerr << "Greska pri otvaranju privremene datoteke." << std::endl;
-        return;
-    }
-
-
-
-    std::string line1;
-    while (std::getline(inputFile, line1))
-    {
-        std::istringstream iss(line1);
-        std::string id1;
-        std::getline(iss, id1, ',');
-
-        if (Id == id1)
+        if (!inputFile.is_open())
         {
-            std::string tip1, adresa1, vlasnik1, brojSobaStr1, opis1, dostupnostStr1, svrha1;
-            double povrsina1, cijena1;
-            int brojSoba1;
+            std::cerr << "Nije moguce prikazati listu ponuda." << std::endl;
+            return;
+        }
+        // std::ofstream file("prihodi_rashodi.txt", std::ios::app);
+        //     if (!file.is_open())
+        // {
+        //     std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
+        //     return;
+        // }
 
-            std::getline(iss, tip1, ',');
-            std::getline(iss, adresa1, ',');
-            std::getline(iss, vlasnik1, ',');
-            iss >> povrsina1;
-            iss.ignore();
-            iss >> brojSoba1;
-            iss.ignore();
-            std::getline(iss, opis1, ',');
-            iss >> cijena1;
-            iss.ignore();
-            std::getline(iss, svrha1, ',');
-            std::getline(iss, dostupnostStr1);
+        std::ofstream tempFile("temp.txt");
+        if (!tempFile.is_open())
+        {
+            std::cerr << "Greska pri otvaranju privremene datoteke." << std::endl;
+            return;
+        }
 
-            if (dostupnostStr1 == "1")
+        std::string line1;
+        while (std::getline(inputFile, line1))
+        {
+            std::istringstream iss(line1);
+            std::string id1;
+            std::getline(iss, id1, ',');
+
+            if (Id == id1)
             {
-                dostupnostStr1 = "1";
-                tempFile << id1 << "," << tip1 << "," << adresa1 << "," << vlasnik1 << "," << povrsina1 << "," << brojSoba1 << "," << opis1 << "," << cijena1 << "," << svrha1 << "," << dostupnostStr1 << std::endl;
-                // auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-                // std::tm *tmNow = std::localtime(&time);
-                // char buffer[20]; // dovoljno velik bafer za formatiranje
-                // std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
+                std::string tip1, adresa1, vlasnik1, brojSobaStr1, opis1, dostupnostStr1, svrha1;
+                double povrsina1, cijena1;
+                int brojSoba1;
 
-                // file << "-----------------------------------------------------------------------------------------" << std::endl;
-                // file << buffer << std::endl;
-                // cijena1 = cijena1 / 105 * 5;
-                // file << "Prihod: " << cijena1 << std::endl;
-                // file << "Rashod: 0" << std::endl;
+                std::getline(iss, tip1, ',');
+                std::getline(iss, adresa1, ',');
+                std::getline(iss, vlasnik1, ',');
+                iss >> povrsina1;
+                iss.ignore();
+                iss >> brojSoba1;
+                iss.ignore();
+                std::getline(iss, opis1, ',');
+                iss >> cijena1;
+                iss.ignore();
+                std::getline(iss, svrha1, ',');
+                std::getline(iss, dostupnostStr1);
+
+                if (dostupnostStr1 == "1")
+                {
+                    dostupnostStr1 = "1";
+                    tempFile << id1 << "," << tip1 << "," << adresa1 << "," << vlasnik1 << "," << povrsina1 << "," << brojSoba1 << "," << opis1 << "," << cijena1 << "," << svrha1 << "," << dostupnostStr1 << std::endl;
+                    // auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+                    // std::tm *tmNow = std::localtime(&time);
+                    // char buffer[20]; // dovoljno velik bafer za formatiranje
+                    // std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
+
+                    // file << "-----------------------------------------------------------------------------------------" << std::endl;
+                    // file << buffer << std::endl;
+                    // cijena1 = cijena1 / 105 * 5;
+                    // file << "Prihod: " << cijena1 << std::endl;
+                    // file << "Rashod: 0" << std::endl;
+                }
+                else
+                {
+                    tempFile << line1 << std::endl;
+                }
             }
             else
             {
                 tempFile << line1 << std::endl;
             }
         }
+
+        inputFile.close();
+        tempFile.close();
+
+        if (std::remove("nekretnine.txt") == 0)
+        {
+            if (std::rename("temp.txt", "nekretnine.txt") != 0)
+            {
+                std::cerr << "Greska pri preimenovanju datoteka." << std::endl;
+                std::cout << "\n----------------------------------------------------------------------------\n\n";
+            }
+        }
         else
         {
-            tempFile << line1 << std::endl;
-        }
-    }
-
-    inputFile.close();
-    tempFile.close();
-
-    if (std::remove("nekretnine.txt") == 0)
-    {
-        if (std::rename("temp.txt", "nekretnine.txt") != 0)
-        {
-            std::cerr << "Greska pri preimenovanju datoteka." << std::endl;
+            std::cerr << "Greska pri brisanju originalne datoteke." << std::endl;
             std::cout << "\n----------------------------------------------------------------------------\n\n";
         }
-    }
-    else
-    {
-        std::cerr << "Greska pri brisanju originalne datoteke." << std::endl;
-        std::cout << "\n----------------------------------------------------------------------------\n\n";
-    }
-    std::ifstream in21("iznajmljivanje_nekretnina.txt");
-    std::ofstream tempFile1("temp1.txt");
+        std::ifstream in21("iznajmljivanje_nekretnina.txt");
+        std::ofstream tempFile1("temp1.txt");
 
-    std::string linija1;
+        std::string linija1;
 
-    while (std::getline(in21, linija1))
-    {
-        std::string immm, prezzz, kor, id, tip, adresa, vlasnik;
-        std::istringstream iss(linija1);
-
-        std::getline(iss, immm, ',');
-        std::getline(iss, prezzz, ',');
-        std::getline(iss, kor, ',');
-        std::getline(iss, id, ',');
-
-        if (Id != id)
+        while (std::getline(in21, linija1))
         {
-            tempFile1 << linija1 << std::endl;
+            std::string immm, prezzz, kor, id, tip, adresa, vlasnik;
+            std::istringstream iss(linija1);
 
-            //---------------------------------------------------------------------------------------------------------
+            std::getline(iss, immm, ',');
+            std::getline(iss, prezzz, ',');
+            std::getline(iss, kor, ',');
+            std::getline(iss, id, ',');
+
+            if (Id != id)
+            {
+                tempFile1 << linija1 << std::endl;
+
+                //---------------------------------------------------------------------------------------------------------
+            }
         }
+        in21.close();
+        tempFile1.close();
+        // file.close();
+        std::filesystem::remove("iznajmljivanje_nekretnina.txt");
+        std::filesystem::rename("temp1.txt", "iznajmljivanje_nekretnina.txt");
     }
-    in21.close();
-    tempFile1.close();
-    // file.close();
-    std::filesystem::remove("iznajmljivanje_nekretnina.txt");
-    std::filesystem::rename("temp1.txt", "iznajmljivanje_nekretnina.txt");
-    }
-    
-  
 }
