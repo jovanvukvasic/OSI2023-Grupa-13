@@ -488,7 +488,14 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
             return;
 
         std::cout << "Unesite id zadatka koji zelite uraditi ili 0 za kraj: " << std::endl;
-        std::cin >> bp;
+        //std::cin >> bp;
+
+        if (!(std::cin >> bp) || bp < 0) {
+            std::cout << "\nNevažeći unos. Molimo unesite ispravan id zadatka.\n\n" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
 
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (bp == 0)
@@ -501,18 +508,6 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         char status;
         std::cin >> status;
 
-        /* std::string komentar;
-         char zeliKomentar;
-
-         std::cout << "\nDa li želite uneti komentar? (d/n): ";
-         std::cin >> zeliKomentar;
-
-         if (zeliKomentar == 'd' || zeliKomentar == 'n')
-         {
-             std::cout << "Unesi komentar: ";
-             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-             std::getline(std::cin, komentar);
-         }*/
         std::string komentar;
         char zeliKomentar;
         if (status == '1')

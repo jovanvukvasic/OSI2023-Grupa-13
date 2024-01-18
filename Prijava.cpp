@@ -229,7 +229,7 @@ void Korisnik::prijaviSe()
                            // int redniBroj;
                             if (!(std::cin >> redniBroj) || redniBroj < 0 || redniBroj > dostupneNekretnine.size())
                             {
-                                std::cout << "Unos je nevažeći. Molimo unesite ispravan redni broj." << std::endl;
+                                std::cout << "\nUnos je nevažeći. Molimo unesite ispravan redni broj.\n\n" << std::endl;
                                 std::cin.clear();                                                   // Očisti zastavice greške
                                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Odbaci nevalidan unos
                                 continue;                                                           // Preskoči ostatak iteracije petlje
