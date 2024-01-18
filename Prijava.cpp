@@ -72,7 +72,7 @@ void Korisnik::prijaviSe()
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [NAJAM], [ODJAVA] ....\n";
             if (pr == "4")
-                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [ZAVOD], [BRISANJE] ,[PREGLED],[LISTAZADATAKA]....\n";
+                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [UPRAVLJANJE], [BRISANJE] ,[PREGLED],[LISTAZADATAKA]....\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
