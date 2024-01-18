@@ -1,3 +1,5 @@
-19,petar
-13,lazo11
-4,lazo11
+14,petar
+10,lazo11
+13,xy
+9,petar
+24,Marija

@@ -1,5 +1,5 @@
                          ~ Ugovor o kupovini ~
 
-  Kupac: Lazar Lazarevic
-  Korisnicko ime kupca: lazo11
+  Kupac: Marko Markovic
+  Korisnicko ime kupca: xy
   Korisnicko ime vlasnika: Nevena
