@@ -4,7 +4,7 @@
 
 void Korisnik::prijaviSe()
 {
-    int ind = 0;
+    int ind=0;
     std::cout << "~ Prijava na sistem ~\n";
     std::cout << "Korisnicko ime: ";
     std::cin >> korisnickoIme;
@@ -72,7 +72,7 @@ void Korisnik::prijaviSe()
             if (pr == "3")
                 std::cout << "\nDostupne operacije iznajmljivac: [PRIKAZ], [NAJAM], [ODJAVA] ....\n";
             if (pr == "4")
-                std::cout << "\nDostupne operacije radnik agencije: [PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [ZAVOD], [BRISANJE] ,[PREGLED]....\n";
+                std::cout << "\nDostupne operacije radnik agencije: \n[PRIKAZ], [REGISTROVANJE], [GENERISANJE], [ODJAVA], [ZAVOD], [BRISANJE] ,[PREGLED]....\n";
             if (pr == "5")
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
@@ -81,11 +81,10 @@ void Korisnik::prijaviSe()
 
             while (ind2 != "ODJAVA")
             {
-                if (pr == "2" && ind == 0)
-                {
-                    ind = 1;
+                if(pr=="2" && ind==0){
+                    ind=1; 
                     std::ifstream inputF2("ugovori.txt");
-                    std::string novaL1, nekretnina, kupac;
+                    std::string novaL1,nekretnina,kupac;
 
                     while (std::getline(inputF2, novaL1))
                     {
@@ -94,12 +93,11 @@ void Korisnik::prijaviSe()
                         std::getline(iss, kupac);
                         if (korisnickoIme == kupac)
                         {
-                            std::cout << " \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje." << std::endl;
-                            std::cout << "   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: "
-                                      << "nekretnina" + nekretnina << std::endl;
+                            std::cout<<" \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje."<<std::endl;
+                            std::cout <<"   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
                         }
                     }
-
+                    
                     inputF2.close();
                 }
                 if(pr=="3" && ind==0){
@@ -150,7 +148,8 @@ void Korisnik::prijaviSe()
                 //----------------------------------KUPOVINA---------------------------------
                 else if (pr == "2")
                 {
-
+                    
+                    
                     if (ind2 == "KUPOVINA")
                     {
                         nekretnineZaKupovinu();
@@ -192,16 +191,15 @@ void Korisnik::prijaviSe()
                     {
                         std::string ind3;
                         std::cout << "1. Generisanje izvjestaja o transakcijama" << std::endl;
-                        std::cout << "2. Generisanje izvjestaja o prihodima i rashodima." << std::endl;
+                        std::cout << "2. Generisanje izvjestaja o transakcijama" << std::endl;
+                        std::cout << "3. Generisanje izvjestaja o prihodima i rashodima." << std::endl;
                         std::cout << "4. Generisanje izvjestaja o stanju racuna" << std::endl;
                         std::cout << "\nUNESITE REDNI BROJ ZELJENE OPCIJE:" << std::endl;
                         std::cin >> ind3;
-                        if (ind3 == "2")
+                        if (ind3 == "3")
                             genersanje_izvjestaja_o_prihodima_i_rashodima();
-                        else if (ind3 == "3")
+                        if(ind3 == "4")
                             generisanje_izvjestaja_o_stanju_racuna();
-                       else if (ind3 == "1")
-                          generisanje_izjestaja_o_transakcijama();
                     }
                     else if (ind2 == "LISTA")
                     {
@@ -270,6 +268,7 @@ void Korisnik::prijaviSe()
                         std::cout << "\nTa opcija nije dostupna.\n";
                 }
             }
+            if(ind2=="ODJAVA")std::cout<<"> Upravo ste se odjavili sa sistema...\n";
             return;
         }
 
