@@ -627,7 +627,7 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         //std::cin >> bp;
 
         if (!(std::cin >> bp) || bp < 0) {
-            std::cout << "\nNevažeći unos. Molimo unesite ispravan id zadatka.\n\n" << std::endl;
+            std::cout << "\nNevazeci unos. Molimo unesite ispravan id zadatka.\n\n" << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
@@ -636,11 +636,11 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (bp == 0)
         {
-            std::cout << "Azuriranje zadataka je završeno." << std::endl;
+            std::cout << "Azuriranje zadataka je zavrseno." << std::endl;
             return;
         }
 
-        std::cout << "\nDa li zelite oznaciti zadatak kao urađen (1) ili neuradjen (0): " << std::endl;
+        std::cout << "\nDa li zelite oznaciti zadatak kao uradjen (1) ili neuradjen (0): " << std::endl;
         char status;
         std::cin >> status;
 
@@ -648,7 +648,7 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         char zeliKomentar;
         if (status == '1')
         {
-            std::cout << "\nDa li želite uneti komentar? (d/n): ";
+            std::cout << "\nDa li zelite uneti komentar? (d/n): ";
             std::cin >> zeliKomentar;
 
             if (zeliKomentar == 'd')

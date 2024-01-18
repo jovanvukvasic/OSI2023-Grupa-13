@@ -224,13 +224,13 @@ void Korisnik::prijaviSe()
                                 std::cout << i + 1 << ". " << dostupneNekretnine[i].getAdresa() << std::endl;
                             }
 
-                            std::cout << "Unesite redni broj nekretnine za koju želite generisati listu zadataka (0 za kraj): ";
+                            std::cout << "Unesite redni broj nekretnine za koju zelite generisati listu zadataka (0 za kraj): ";
                             int redniBroj;
                            // std::cin >> redniBroj;
                            // int redniBroj;
                             if (!(std::cin >> redniBroj) || redniBroj < 0 || redniBroj > dostupneNekretnine.size())
                             {
-                                std::cout << "\nUnos je nevažeći. Molimo unesite ispravan redni broj.\n\n" << std::endl;
+                                std::cout << "\nUnos je nevazeci. Molimo unesite ispravan redni broj.\n\n" << std::endl;
                                 std::cin.clear();                                                   // Očisti zastavice greške
                                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Odbaci nevalidan unos
                                 continue;                                                           // Preskoči ostatak iteracije petlje
@@ -269,7 +269,7 @@ void Korisnik::prijaviSe()
 
                             file.close();
 
-                            std::cout << "Generisana lista zadataka za nekretninu " << odabranaAdresa << " uspješno upisana u datoteku." << std::endl;
+                            std::cout << "Generisana lista zadataka za nekretninu " << odabranaAdresa << " uspjesno upisana u datoteku." << std::endl;
                         }
                     }
                 }
