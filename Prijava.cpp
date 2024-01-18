@@ -38,6 +38,8 @@ void Korisnik::prijaviSe()
 
     while (std::getline(file, line))
     {
+        std::cout << "\n----------------------------------------------------------------------------------------------------------";
+
         std::istringstream iss(line);
         std::string pr, ki, si, i, p, bt, ea;
 
@@ -53,11 +55,13 @@ void Korisnik::prijaviSe()
 
             std::string ind2;
 
-            std::cout << "\n\nUspesno ste se prijavili!\n\n\n";
+            std::cout << "\n\nUspjesno ste se prijavili!\n\n";
+        std::cout << "----------------------------------------------------------------------------------------------------------\n";
 
             Korisnik k(ki, si, pr, i, p, bt, ea);
 
             k.prikazProfila();
+        std::cout << "----------------------------------------------------------------------------------------------------------\n";
 
             if (pr == "1")
                 std::cout << "\nDostupne operacije vlasniku: [PRIKAZ], [SLANJE], [ODJAVA], [AZURIRANJE] ....\n";
@@ -71,10 +75,12 @@ void Korisnik::prijaviSe()
                 std::cout << "\nDostupne operacije odrzavatelj: [PRIKAZ], [ZADACI], [AZURIRAJ], [ODJAVA]....\n";
             if (pr == "6")
                 std::cout << "\nDostupne operacije adminu: [KORISNICI] ....\n";
+        std::cout << "----------------------------------------------------------------------------------------------------------\n";
+            
             while (ind2 != "ODJAVA")
             {
                 // prikaz informacija o transakcijama-----------------------------------------------
-
+                std::cout << "\n"<<korisnickoIme<<"> ";
                 std::cout << "\n> ";
                 std::cin >> ind2;
                 if (ind2 == "PRIKAZ")
