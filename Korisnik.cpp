@@ -543,3 +543,54 @@ void Korisnik::genersanje_izvjestaja_o_prihodima_i_rashodima()
 
     file.close();
 }
+
+void Korisnik::generisanje_izvjestaja_o_stanju_racuna() 
+{
+    std::ifstream file("prihodi_rashodi.txt");
+
+    if(!file.is_open())
+    {
+        std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
+        return;
+    }
+
+    std::string linija;
+    std::string prihod_linija;
+    std::string rashod_linija;
+    double prihod = 0;
+    double rashod = 0;
+    std::vector<std::string> linije;
+
+    while(std::getline(file, linija)) 
+    {
+        linije.push_back(linija);
+    }
+
+    int pozicija = 2;
+
+    while(pozicija < linije.size()) 
+    {
+        prihod_linija = linije[pozicija];
+        pozicija += 1;
+        rashod_linija = linije[pozicija];
+
+        pozicija += 3;
+
+        std::string prihod_broj;
+        std::string rashod_broj;
+
+        prihod_broj = prihod_linija.substr(8, prihod_linija.length() - 1);
+        rashod_broj = rashod_linija.substr(8, rashod_linija.length() - 1);
+        prihod += std::stod(prihod_broj);
+        rashod += std::stod(rashod_broj);
+    }
+
+    prihod -= rashod;
+
+    auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    std::tm *tmNow = std::localtime(&time);
+    char buffer[20]; // dovoljno velik bafer za formatiranje
+    std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
+    std::cout << "Trenutno vrijeme i datum: " << buffer << std::endl;
+    std::cout << std::fixed <<  std::setprecision(2) << "Stanje ukupno: " << prihod << std::endl;
+}
