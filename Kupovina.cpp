@@ -126,7 +126,7 @@ void Korisnik::kupovina()
     tempFile.close();
 }
 
-void Korisnik::zavedi_kupovina()
+void Korisnik::upravljanje_statusom_transakcija_kupovine()
 {
     std::ifstream in2("kupovina_nekretnine.txt");
 

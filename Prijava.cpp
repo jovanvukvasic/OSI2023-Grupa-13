@@ -184,9 +184,9 @@ void Korisnik::prijaviSe()
                         std::cout << "UNESITE REDNI BROJ ZELJENE OPCIJE: ";
                         std::cin >> ind3;
                         if (ind3 == "1")
-                            zavedi_kupovina();
+                            upravljanje_statusom_transakcija_kupovine();
                         else if (ind3 == "2")
-                            zavedi_najam();
+                        upravljanje_statusom_transakcija_najma();
                     }
                     else if (ind2 == "BRISANJE")
                         upravljanje_ponudama();
