@@ -126,13 +126,12 @@ void Korisnik::kupovina()
     tempFile.close();
 }
 
-
 void Korisnik::zavedi_kupovina()
 {
     std::ifstream in2("kupovina_nekretnine.txt");
 
     int redniBroj = 1;
-    static double ukupna=0;
+    static double ukupna = 0;
     std::string linija;
     std::cout << "\n----------------------------------------------------------------------------\n\n";
 
@@ -193,6 +192,13 @@ void Korisnik::zavedi_kupovina()
             return;
         }
 
+        std::ofstream file2("transakcije.txt", std::ios::app);
+        if (!file2.is_open())
+        {
+            std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
+            return;
+        }
+
         std::ofstream tempFile("temp.txt");
         if (!tempFile.is_open())
         {
@@ -234,14 +240,17 @@ void Korisnik::zavedi_kupovina()
                     std::tm *tmNow = std::localtime(&time);
                     char buffer[20]; // dovoljno velik bafer za formatiranje
                     std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
-
+                    
                     file << "-----------------------------------------------------------------------------------------" << std::endl;
+                    file2 << "-----------------------------------------------------------------------------------------" << std::endl;
                     file << buffer << std::endl;
+                    file2 << buffer << std::endl;
                     cijena1 = cijena1 / 105 * 5;
-                    ukupna=ukupna+cijena1;
-                    file<<"Stanje na racunu: "<<ukupna<<std::endl;
-                    file << "Prihod: " << cijena1<< std::endl;
-                    file << "Rashod: 0" << std::endl;
+                    ukupna = ukupna + cijena1;
+                    file2<<"+"<<cijena1<<" KM"<<std::endl;
+                    file << "Stanje na racunu: " << ukupna <<" KM"<< std::endl;
+                    file << "Prihod: " << cijena1 <<" KM"<< std::endl;
+                    file << "Rashod: 0 KM" << std::endl;
                 }
                 else
                 {
@@ -431,4 +440,3 @@ void Korisnik::zavedi_kupovina()
         std::filesystem::rename("temp1.txt", "kupovina_nekretnine.txt");
     }
 }
-
