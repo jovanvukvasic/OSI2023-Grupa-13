@@ -648,7 +648,7 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
         char zeliKomentar;
         if (status == '1')
         {
-            std::cout << "\nDa li zelite uneti komentar? (d/n): ";
+            std::cout << "\nDa li zelite unijeti komentar? (d/n): ";
             std::cin >> zeliKomentar;
 
             if (zeliKomentar == 'd')
