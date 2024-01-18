@@ -84,23 +84,22 @@ void Korisnik::kupovina()
 
         if (ID == br)
         {
-            outputFile << imee << "," << prezimee << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
-            std::cout << "\nVas zahtjev za kupovinu je u obradi.\n" << std::endl;
+            outputFile << imee << "," << prezimee << "," << korisnickoIme << "," << novaLinija << '\n'; // Pronađena odgovarajuća linija, kopir
+            std::cout << "\nVas zahtjev za kupovinu je u obradi.\n"
+                      << std::endl;
         }
 
         else
         {
-            tempFile << novaLinija << '\n'; // Kopiramo sve ostale linije u temp datoteku
+            tempFile << novaLinija << '\n';
         }
     }
-    // Zatvaranje datoteka nakon završetka petlje
     inputFile.close();
     outputFile.close();
     tempFile.close();
     std::remove("nekretnine.txt");
     std::rename("tempnekretnine.txt", "nekretnine.txt");
 }
-
 
 void Korisnik::zavedi_kupovina()
 {
@@ -109,7 +108,7 @@ void Korisnik::zavedi_kupovina()
     std::ifstream inputFile2("kupovina_nekretnine.txt");
     std::ofstream outputFile("nekretnine.txt", std::ios::app);
     std::ofstream tempFile("temp_poslate_ponude.txt");
-    std::ofstream file("prihodi_rashodi.txt",std::ios::app);
+    std::ofstream file("prihodi_rashodi.txt", std::ios::app);
     if (!inputFile2.is_open() || !outputFile.is_open() || !tempFile.is_open() || !file.is_open())
     {
         std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
@@ -144,12 +143,13 @@ void Korisnik::zavedi_kupovina()
         std::istringstream iss(novaLinija1);
         if (redniBroj == bp)
         {
-            std::string immm, prezzz, id, tip, adresa, vlasnik, opis, svrha, dostupnostStr;
+            std::string immm, prezzz, kor, id, tip, adresa, vlasnik, opis, svrha, dostupnostStr;
             double povrsina, cijena;
             int brojSoba;
 
             std::getline(iss, immm, ',');
             std::getline(iss, prezzz, ',');
+            std::getline(iss, kor, ',');
             std::getline(iss, id, ',');
             std::getline(iss, tip, ',');
             std::getline(iss, adresa, ',');
@@ -180,6 +180,33 @@ void Korisnik::zavedi_kupovina()
                 file << "Prihod: " << cijena << std::endl;
                 file << "Rashod: 0" << std::endl;
             }
+
+            //-----------------------------------------------GENERISANJE UGOVORA---------------------------------------
+            std::string naziv;
+            naziv="nekretnina"+id+".txt";
+            std::ofstream nekretninaFile("ugovori/" + naziv);
+
+            if (nekretninaFile.is_open())
+            {
+                nekretninaFile << "                         ~ Ugovor o kupovini ~\n" << std::endl;
+                nekretninaFile << "  Kupac: "<< immm <<" "<<prezzz<< std::endl;
+                nekretninaFile << "  Korisnicko ime kupca: "<< kor<< std::endl;
+                nekretninaFile << "  Korisnicko ime vlasnika: "<< vlasnik<< std::endl;
+                nekretninaFile.close();
+            }
+           
+
+            std::ofstream ugovoriFile("ugovori.txt", std::ios::app); 
+            if (ugovoriFile.is_open())
+            {
+                ugovoriFile << id<<","<<kor << std::endl;
+                ugovoriFile.close();
+            }
+        
+            std::cout << "Ugovor generisan!\n   > Stranke mogu pristupiti potpisivanju." << std::endl;
+
+            //---------------------------------------------------------------------------------------------------------
+
             outputFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << "," << opis << "," << cijena << "  ," << svrha << ',' << dostupnostStr << std::endl;
         }
 
