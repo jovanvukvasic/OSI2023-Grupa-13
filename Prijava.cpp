@@ -125,7 +125,190 @@ void Korisnik::prijaviSe()
                 }
                 if (pr == "6")
                 {
-                    prikaz_informacija_o_agenciji();
+                    //prikaz_informacija_o_agenciji();
+
+                    std::string naziv;
+
+                    std::ifstream file("nalozi.txt");
+                    std::string line;
+                    std::string pr, ki, si, i, p, bt, ea;
+                    int rb = 1;
+                    std::cout << "Radnici agencije: " << std::endl;
+
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    std::cout << "RB |" << std::setw(9) << "Kor. ime"
+                              << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << "Ime"
+                              << " | " << std::setw(8) << std::setw(10) << "Prezime"
+                              << " | " << std::setw(33) << "E-adresa"
+                              << " | " << std::endl;
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    while (std::getline(file, line))
+                    {
+
+                        std::istringstream iss(line);
+                        if (!(iss >> pr >> ki >> si >> i >> p >> bt >> ea))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (pr == "4")
+                            {
+
+                                std::cout << rb << ". |" << std::setw(9) << ki << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << i << " | " << std::setw(8) << std::setw(10) << p << " | " << std::setw(33) << ea << " | " << std::endl;
+                                rb++;
+                            }
+                        }
+                    }
+                    file.close();
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+
+                    std::ifstream file1("nalozi.txt");
+                    
+                    rb = 1;
+                    std::cout << "\nOdrzavaci: " << std::endl;
+
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    std::cout << "RB |" << std::setw(9) << "Kor. ime"
+                              << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << "Ime"
+                              << " | " << std::setw(8) << std::setw(10) << "Prezime"
+                              << " | " << std::setw(33) << "E-adresa"
+                              << " | " << std::endl;
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    while (std::getline(file1, line))
+                    {
+
+                        std::istringstream iss(line);
+                        if (!(iss >> pr >> ki >> si >> i >> p >> bt >> ea))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (pr == "5")
+                            {
+
+                                std::cout << rb << ". |" << std::setw(9) << ki << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << i << " | " << std::setw(8) << std::setw(10) << p << " | " << std::setw(33) << ea << " | " << std::endl;
+                                rb++;
+                            }
+                        }
+                    }
+                    file1.close();
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+            
+            
+                    std::ifstream file2("nalozi.txt");
+                    
+                    rb = 1;
+                    std::cout << "\nVlasnici nekretnina: " << std::endl;
+
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    std::cout << "RB |" << std::setw(9) << "Kor. ime"
+                              << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << "Ime"
+                              << " | " << std::setw(8) << std::setw(10) << "Prezime"
+                              << " | " << std::setw(33) << "E-adresa"
+                              << " | " << std::endl;
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    while (std::getline(file2, line))
+                    {
+
+                        std::istringstream iss(line);
+                        if (!(iss >> pr >> ki >> si >> i >> p >> bt >> ea))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (pr == "1")
+                            {
+
+                                std::cout << rb << ". |" << std::setw(9) << ki << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << i << " | " << std::setw(8) << std::setw(10) << p << " | " << std::setw(33) << ea << " | " << std::endl;
+                                rb++;
+                            }
+                        }
+                    }
+                    file2.close();
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+ 
+                    std::ifstream file3("nalozi.txt");
+                    
+                    rb = 1;
+                    std::cout << "\nKupci: " << std::endl;
+
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    std::cout << "RB |" << std::setw(9) << "Kor. ime"
+                              << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << "Ime"
+                              << " | " << std::setw(8) << std::setw(10) << "Prezime"
+                              << " | " << std::setw(33) << "E-adresa"
+                              << " | " << std::endl;
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    while (std::getline(file3, line))
+                    {
+
+                        std::istringstream iss(line);
+                        if (!(iss >> pr >> ki >> si >> i >> p >> bt >> ea))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (pr == "2")
+                            {
+
+                                std::cout << rb << ". |" << std::setw(9) << ki << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << i << " | " << std::setw(8) << std::setw(10) << p << " | " << std::setw(33) << ea << " | " << std::endl;
+                                rb++;
+                            }
+                        }
+                    }
+                    file3.close();
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+ 
+                    std::ifstream file4("nalozi.txt");
+                    
+                    rb = 1;
+                    std::cout << "\nIznajmljivaci: " << std::endl;
+
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    std::cout << "RB |" << std::setw(9) << "Kor. ime"
+                              << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << "Ime"
+                              << " | " << std::setw(8) << std::setw(10) << "Prezime"
+                              << " | " << std::setw(33) << "E-adresa"
+                              << " | " << std::endl;
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+
+                    while (std::getline(file4, line))
+                    {
+
+                        std::istringstream iss(line);
+                        if (!(iss >> pr >> ki >> si >> i >> p >> bt >> ea))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (pr == "3")
+                            {
+
+                                std::cout << rb << ". |" << std::setw(9) << ki << " | " << std::setw(10) << " | " << std::setw(8) << std::setw(10) << i << " | " << std::setw(8) << std::setw(10) << p << " | " << std::setw(33) << ea << " | " << std::endl;
+                                rb++;
+                            }
+                        }
+                    }
+                    file4.close();
+                    std::cout << "--------------------------------------------------------------------------------------- " << std::endl;
+                    
+                    generisanje_izjestaja_o_transakcijama();
+                
                 }
                 // prikaz informacija o transakcijama-----------------------------------------------
                 std::cout << "\n"
