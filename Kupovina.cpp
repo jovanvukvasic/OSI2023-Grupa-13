@@ -125,13 +125,13 @@ void Korisnik::kupovina()
     outputFile.close();
     tempFile.close();
 }
-
+    static double ukupna = 0;
 void Korisnik::zavedi_kupovina()
 {
     std::ifstream in2("kupovina_nekretnine.txt");
 
     int redniBroj = 1;
-    static double ukupna = 0;
+
     std::string linija;
     std::cout << "\n----------------------------------------------------------------------------\n\n";
 
