@@ -27,7 +27,7 @@ void Korisnik::slanje_ponude()
     }
 
     std::cout << "Unesite adresu nekretnine: ";
-    std::cin.ignore(); 
+    std::cin.ignore();
     std::getline(std::cin, adresa);
     if (adresa.empty())
     {
@@ -47,11 +47,10 @@ void Korisnik::slanje_ponude()
     {
         std::cout << "Broj soba mora biti pozitivan broj. Molimo vas ponovite unos." << std::endl;
     }
-    
+
     std::cout << "Unesite kratak opis: ";
     std::cin.ignore();
     std::getline(std::cin, opis);
-
 
     std::cout << "Prodajna cijena nekretnine ce biti vece za 5% u odnosu na unesenu cijenu - Unesite cijenu nekretnine: ";
     std::cin >> cena;
@@ -65,7 +64,6 @@ void Korisnik::slanje_ponude()
     std::cout << "Automatski unos informacija o vlasniku." << std::endl;
     // Ovdje biste mogli implementirati kod za automatski unos informacija o vlasniku
 
-
     //------------PRODAJA----------------------------------------------------------------------------------------------------------
     std::string svrha;
     std::cout << "Unesite namjenu (moguce opcije [NAJAM], [PRODAJA]): ";
@@ -74,20 +72,20 @@ void Korisnik::slanje_ponude()
     {
         std::cout << "Tip nekretnine ne sme biti prazan. Molimo vas ponovite unos." << std::endl;
     }
-    if(svrha=="PRODAJA"){
-        svrha="prodaja";
-        
+    if (svrha == "PRODAJA")
+    {
+        svrha = "prodaja";
     }
     //----------------------------------------------------------------------------------------------------------------------
 
-
-
     //----------NAJAM------------------------------------------------------------------------------------------------------------
 
-    else if(svrha=="NAJAM"){
-        svrha="najam";
+    else if (svrha == "NAJAM")
+    {
+        svrha = "najam";
     }
-    else std::cout<<"Neispravno izabrana opcija.\n";
+    else
+        std::cout << "Neispravno izabrana opcija.\n";
     //----------------------------------------------------------------------------------------------------------------------
 
     std::cout << "Zelite li sacuvati informacije o nekretnini? (Da/Ne): ";
@@ -125,7 +123,7 @@ void Korisnik::slanje_ponude()
 
 void Korisnik::pregled_trenutnih_ponuda()
 {
-    std::ifstream inputFile("poslate_ponude.txt"); 
+    std::ifstream inputFile("poslate_ponude.txt");
 
     if (!inputFile.is_open())
     {
@@ -138,21 +136,21 @@ void Korisnik::pregled_trenutnih_ponuda()
     while (std::getline(inputFile, line1))
     {
         std::istringstream iss(line1);
-        std::string  tip, adresa, vlasnik, brojSobaStr, opis;
+        std::string tip, adresa, vlasnik, brojSobaStr, opis;
         double povrsina, cijena;
         int brojSoba;
-        
+
         std::getline(iss, tip, ',');
         std::getline(iss, adresa, ',');
         std::getline(iss, vlasnik, ',');
         iss >> povrsina;
-        iss.ignore(); 
+        iss.ignore();
         iss >> brojSoba;
         iss.ignore();
         std::getline(iss, opis, ',');
         iss >> cijena;
 
-        std::cout <<"["<< redniBroj <<"]    " << tip <<" " <<adresa<<" " <<vlasnik<<" " <<povrsina<<" " <<brojSoba<<" " <<opis<<" " <<cijena<< std::endl;
+        std::cout << "[" << redniBroj << "]    " << tip << " " << adresa << " " << vlasnik << " " << povrsina << " " << brojSoba << " " << opis << " " << cijena << std::endl;
         redniBroj++;
     }
     inputFile.close();
@@ -165,16 +163,17 @@ void Korisnik::registrovanje_ponude()
     std::vector<Nekretnina> nekretnine;
     std::ifstream file("nekretnine.txt");
 
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         std::cerr << "Datoteka se ne moze otvoriti 'nekretnine.txt'." << std::endl;
     }
 
     std::string line;
     std::string ID;
 
-    while (std::getline(file, line)) {
+    while (std::getline(file, line))
+    {
         std::istringstream iss(line);
-        
 
         std::getline(iss, ID, ',');
     }
@@ -183,9 +182,6 @@ void Korisnik::registrovanje_ponude()
 
     file.close();
     //---------------------------------------------Kraj dijela sa trazenje IDa---------------------------------------------
-
-
-
 
     pregled_trenutnih_ponuda();
     int bp;
@@ -207,13 +203,14 @@ void Korisnik::registrovanje_ponude()
 
     while (std::getline(inputFile2, novaLinija1))
     {
-        if (redniBroj == bp){
-            outputFile<<ID<<",";
-            
-            outputFile << novaLinija1 <<",";
+        if (redniBroj == bp)
+        {
+            outputFile << ID << ",";
+
+            outputFile << novaLinija1 << ",";
             outputFile << "1\n";
         }
-            
+
         else
             tempFile << novaLinija1 << '\n';
 
@@ -222,7 +219,7 @@ void Korisnik::registrovanje_ponude()
 
     inputFile2.close();
     outputFile.close();
-    tempFile.close(); 
+    tempFile.close();
 
     // Opciono: Obrisati staru datoteku i preimenovati novu
     std::remove("poslate_ponude.txt");
@@ -230,9 +227,6 @@ void Korisnik::registrovanje_ponude()
 
     std::cout << "Ponuda je uspesno registrovana i uklonjena iz poslatih ponuda." << std::endl;
 }
-
-
- 
 
 #include <fstream>
 #include <iostream>
@@ -244,13 +238,13 @@ void Korisnik::upravljanje_ponudama()
 
     for (Nekretnina nekretnina : nekretnine)
     {
-       nekretnina.prikaziInformacije();
+        nekretnina.prikaziInformacije();
     }
 
     std::string Id;
     std::cout << "Unesite id nekretnine koju zelite da obrisete: ";
     std::cin >> Id;
-    
+
     std::ifstream inputFile("nekretnine.txt");
     if (!inputFile.is_open())
     {
@@ -288,17 +282,17 @@ void Korisnik::upravljanje_ponudama()
             std::getline(iss, opis, ',');
             iss >> cijena;
             iss.ignore();
-            std::getline(iss, svrha,',');
+            std::getline(iss, svrha, ',');
             std::getline(iss, dostupnostStr);
 
             if (dostupnostStr == "1")
             {
                 dostupnostStr = "0";
-                tempFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << ","<<opis<<"," << cijena << "," << svrha << "," << dostupnostStr << std::endl;
+                tempFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << "," << opis << "," << cijena << "," << svrha << "," << dostupnostStr << std::endl;
             }
             else
             {
-                tempFile << line1 << std::endl; 
+                tempFile << line1 << std::endl;
             }
         }
         else
@@ -350,13 +344,19 @@ void Korisnik::prikaz_informacija_o_agenciji()
 
         if (tokens.size() >= 7)
         {
-            std::cout << "[" << redniBroj <<"]"<<std::endl;
-            std::cout << "    " <<"Ime: "<<tokens[3] << std::endl;
-            std::cout << "    " <<"Prezime: "<<tokens[4] << std::endl;
-            std::cout << "    " << "Tip profila: " << tokens[0] << std::endl;
-            std::cout << "    " << "Korisnicko ime: " << tokens[1] << std::endl;
-            std::cout << "    " << "Broj telefona: " << tokens[5] << std::endl;
-            std::cout << "    " << "E-mail adresa: " << tokens[6] << std::endl;
+            std::cout << "[" << redniBroj << "]" << std::endl;
+            std::cout << "    "
+                      << "Ime: " << tokens[3] << std::endl;
+            std::cout << "    "
+                      << "Prezime: " << tokens[4] << std::endl;
+            std::cout << "    "
+                      << "Tip profila: " << tokens[0] << std::endl;
+            std::cout << "    "
+                      << "Korisnicko ime: " << tokens[1] << std::endl;
+            std::cout << "    "
+                      << "Broj telefona: " << tokens[5] << std::endl;
+            std::cout << "    "
+                      << "E-mail adresa: " << tokens[6] << std::endl;
             redniBroj++;
         }
     }
@@ -364,11 +364,12 @@ void Korisnik::prikaz_informacija_o_agenciji()
     inputFile.close();
 }
 
-void Korisnik::azuriranje_informacija_o_nekretnini() 
+void Korisnik::azuriranje_informacija_o_nekretnini()
 {
     std::ifstream inputFile("nekretnine.txt");
 
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         std::cerr << "Nije moguće otvoriti datoteku za čitanje." << std::endl;
         return;
     }
@@ -378,16 +379,19 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
     std::string line;
     std::vector<std::string> tokens;
 
-    while (std::getline(inputFile, line)) {
+    while (std::getline(inputFile, line))
+    {
         std::istringstream iss(line);
         tokens.clear();
 
         std::string token;
-        while (std::getline(iss, token, ',')) {
+        while (std::getline(iss, token, ','))
+        {
             tokens.push_back(token);
         }
 
-        if (tokens.size() >= 7 && tokens[3] == korisnickoIme) {
+        if (tokens.size() >= 7 && tokens[3] == korisnickoIme)
+        {
             std::cout << tokens[0] << ", " << tokens[1] << ", " << tokens[2] << ", " << tokens[4] << ", " << tokens[6] << ", " << tokens[7] << ", " << tokens[8] << std::endl;
         }
     }
@@ -401,7 +405,8 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
     // Otvaranje datoteke za pisanje (temp.txt)
     std::ofstream tempFile("temp.txt");
 
-    if (!tempFile.is_open()) {
+    if (!tempFile.is_open())
+    {
         std::cerr << "Nije moguće otvoriti datoteku za čitanje ili pisanje." << std::endl;
         return;
     }
@@ -409,16 +414,19 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
     inputFile.open("nekretnine.txt");
 
     // Preskakanje odabrane nekretnine
-    while (std::getline(inputFile, line)) {
+    while (std::getline(inputFile, line))
+    {
         std::istringstream iss(line);
         tokens.clear();
 
         std::string token;
-        while (std::getline(iss, token, ',')) {
+        while (std::getline(iss, token, ','))
+        {
             tokens.push_back(token);
         }
 
-        if (tokens.size() >= 7 && tokens[3] == korisnickoIme && std::stoi(tokens[0]) == izbor) {
+        if (tokens.size() >= 7 && tokens[3] == korisnickoIme && std::stoi(tokens[0]) == izbor)
+        {
             // Preskoci ovu nekretninu
             continue;
         }
@@ -431,16 +439,16 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
 
     remove("nekretnine.txt");
     rename("temp.txt", "nekretnine.txt");
-    std::cout<<"Unesite nove informacije o nekretnini:"<<std::endl;
+    std::cout << "Unesite nove informacije o nekretnini:" << std::endl;
     slanje_ponude();
 
-    std::cout << "Nove informacije su uspjesno unesene. Azuriranje ceka odobrenje agencije."<< std::endl;
+    std::cout << "Nove informacije su uspjesno unesene. Azuriranje ceka odobrenje agencije." << std::endl;
 }
 bool Korisnik::prikaziListu(std::string korisnickoIme)
 {
     std::ifstream inputFile2("generisane_liste.txt");
     int redniBroj = 1;
-    std::string novaLinija1, naziv, zadatak, ime, ind,komentar;
+    std::string novaLinija1, naziv, zadatak, ime, ind, komentar;
     bool imaZadataka = false;
     while (std::getline(inputFile2, novaLinija1))
     {
@@ -448,37 +456,36 @@ bool Korisnik::prikaziListu(std::string korisnickoIme)
         std::getline(iss, naziv, ',');
         std::getline(iss, zadatak, ',');
         std::getline(iss, ime, ',');
-        std::getline(iss, ind,',');
-        std::getline(iss,komentar);
+        std::getline(iss, ind, ',');
+        std::getline(iss, komentar);
         if (korisnickoIme == ime && ind == "0")
         {
             std::cout << "[" << redniBroj << "]. " << naziv << ", " << zadatak << std::endl;
-             imaZadataka = true;
-             
+            imaZadataka = true;
         }
         redniBroj++;
     }
     inputFile2.close();
     if (!imaZadataka)
     {
-        imaZadataka=false;
-        std::cout << "\nNema zadataka za Vas.\n" << std::endl;
+        imaZadataka = false;
+        std::cout << "\nNema zadataka za Vas.\n"
+                  << std::endl;
     }
     return imaZadataka;
-
 }
 #include <limits>
 void Korisnik::azurirajListu(std::string korisnickoIme)
 {
     int bp;
     bool ima;
-    
+
     while (true)
     {
-        
-       ima=prikaziListu(korisnickoIme);
-       if(!ima)
-       return;
+
+        ima = prikaziListu(korisnickoIme);
+        if (!ima)
+            return;
 
         std::cout << "Unesite id zadatka koji zelite uraditi ili 0 za kraj: " << std::endl;
         std::cin >> bp;
@@ -515,7 +522,7 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
 
             if (zeliKomentar == 'd')
             {
-                
+
                 std::cout << "Unesi komentar : ";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, komentar);
@@ -565,8 +572,6 @@ void Korisnik::azurirajListu(std::string korisnickoIme)
     }
 }
 
-
-
 void Korisnik::genersanje_izvjestaja_o_prihodima_i_rashodima()
 {
     std::ifstream file("prihodi_rashodi.txt");
@@ -586,61 +591,31 @@ void Korisnik::genersanje_izvjestaja_o_prihodima_i_rashodima()
     file.close();
 }
 
-void Korisnik::generisanje_izvjestaja_o_stanju_racuna() 
+void Korisnik::generisanje_izvjestaja_o_stanju_racuna()
 {
-    std::ifstream file("prihodi_rashodi.txt");
+    std::ifstream file("stanje_racuna.txt");
 
-    if(!file.is_open())
+    if (!file.is_open())
     {
         std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
         return;
     }
 
-    std::string linija;
-    std::string prihod_linija;
-    std::string rashod_linija;
-    double prihod = 0;
-    double rashod = 0;
-    std::vector<std::string> linije;
-
-    while(std::getline(file, linija)) 
-    {
-        linije.push_back(linija);
-    }
-
-    int pozicija = 2;
-
-    while(pozicija < linije.size()) 
-    {
-        prihod_linija = linije[pozicija];
-        pozicija += 1;
-        rashod_linija = linije[pozicija];
-
-        pozicija += 3;
-
-        std::string prihod_broj;
-        std::string rashod_broj;
-
-        prihod_broj = prihod_linija.substr(8, prihod_linija.length() - 1);
-        rashod_broj = rashod_linija.substr(8, rashod_linija.length() - 1);
-        prihod += std::stod(prihod_broj);
-        rashod += std::stod(rashod_broj);
-    }
-
-    prihod -= rashod;
+    std::string novac;
+    file >> novac;
+    file.close();
 
     auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     std::tm *tmNow = std::localtime(&time);
     char buffer[20]; // dovoljno velik bafer za formatiranje
     std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
     std::cout << "Trenutno vrijeme i datum: " << buffer << std::endl;
-    std::cout << std::fixed <<  std::setprecision(2) << "Stanje ukupno: " << prihod << std::endl;
+    std::cout << "Stanje na racunu: " << novac << " KM" << std::endl;
 }
-
 
 void Korisnik::generisanje_izjestaja_o_transakcijama()
 {
-  std::ifstream file("transakcije.txt");
+    std::ifstream file("transakcije.txt");
 
     if (!file.is_open())
     {
@@ -654,5 +629,5 @@ void Korisnik::generisanje_izjestaja_o_transakcijama()
         std::cout << linija << std::endl;
     }
 
-    file.close();  
+    file.close();
 }
