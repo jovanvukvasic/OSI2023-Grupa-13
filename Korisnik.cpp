@@ -609,7 +609,7 @@ void Korisnik::generisanje_izvjestaja_o_stanju_racuna()
     std::tm *tmNow = std::localtime(&time);
     char buffer[20]; // dovoljno velik bafer za formatiranje
     std::strftime(buffer, sizeof(buffer), "%d.%m.%Y. %H:%M", tmNow);
-    std::cout << "Trenutno vrijeme i datum: " << buffer << std::endl;
+    std::cout << "Datum i vrijeme: " << buffer << std::endl;
     std::cout << "Stanje na racunu: " << novac << " KM" << std::endl;
 }
 
