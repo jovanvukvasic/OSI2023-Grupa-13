@@ -102,6 +102,25 @@ void Korisnik::prijaviSe()
 
                     inputF2.close();
                 }
+                if(pr=="3" && ind==0){
+                    ind=1; 
+                    std::ifstream inputF2("ugovori.txt");
+                    std::string novaL1,nekretnina,kupac;
+
+                    while (std::getline(inputF2, novaL1))
+                    {
+                        std::istringstream iss(novaL1);
+                        std::getline(iss, nekretnina, ',');
+                        std::getline(iss, kupac);
+                        if (korisnickoIme == kupac)
+                        {
+                            std::cout<<" \nVas najam je odobren, ugovor je generisan i spreman za potpisivanje."<<std::endl;
+                            std::cout <<"   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
+                        }
+                    }
+                    
+                    inputF2.close();
+                }
                 // prikaz informacija o transakcijama-----------------------------------------------
                 std::cout << "\n"
                           << korisnickoIme << "> ";
