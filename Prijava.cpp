@@ -191,15 +191,16 @@ void Korisnik::prijaviSe()
                     {
                         std::string ind3;
                         std::cout << "1. Generisanje izvjestaja o transakcijama" << std::endl;
-                        std::cout << "2. Generisanje izvjestaja o transakcijama" << std::endl;
-                        std::cout << "3. Generisanje izvjestaja o prihodima i rashodima." << std::endl;
-                        std::cout << "4. Generisanje izvjestaja o stanju racuna" << std::endl;
+                        std::cout << "2. Generisanje izvjestaja o prihodima i rashodima." << std::endl;
+                        std::cout << "3. Generisanje izvjestaja o stanju racuna" << std::endl;
                         std::cout << "\nUNESITE REDNI BROJ ZELJENE OPCIJE:" << std::endl;
                         std::cin >> ind3;
-                        if (ind3 == "3")
+                        if (ind3 == "2")
                             genersanje_izvjestaja_o_prihodima_i_rashodima();
-                        if(ind3 == "4")
+                    else if(ind3 == "3")
                             generisanje_izvjestaja_o_stanju_racuna();
+                            else if(inr3=="1")
+                            generisanje_izjestaja_o_transakcijama();
                     }
                     else if (ind2 == "LISTA")
                     {
