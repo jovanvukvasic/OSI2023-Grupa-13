@@ -10,8 +10,14 @@
 int main()
 {
     std::string ind;
-    std::cout << "\n~ Aplikacija za rad sa nekretninama ~\n";
+        std::cout << "\n----------------------------------------------------------------------------------------------------------\n";
+
+    std::cout << "                                    ~ Aplikacija za rad sa nekretninama ~\n";
+        std::cout << "----------------------------------------------------------------------------------------------------------\n";
+
     std::cout << "\nDostupne opcije: [REGISTRACIJA], [PRIJAVA], [PRIKAZ]\n\n";
+        std::cout << "----------------------------------------------------------------------------------------------------------\n";
+
 
     /*TODO
         Dostupne nekretnine

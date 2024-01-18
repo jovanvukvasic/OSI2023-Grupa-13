@@ -293,7 +293,7 @@ void Korisnik::upravljanje_ponudama()
             if (dostupnostStr == "1")
             {
                 dostupnostStr = "0";
-                tempFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << ","<<opis<<"," << cijena << "," << ',' << svrha << dostupnostStr << std::endl;
+                tempFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << ","<<opis<<"," << cijena << "," << svrha << "," << dostupnostStr << std::endl;
             }
             else
             {

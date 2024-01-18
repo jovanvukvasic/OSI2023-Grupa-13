@@ -93,8 +93,8 @@ void Korisnik::prijaviSe()
                         std::getline(iss, kupac);
                         if (korisnickoIme == kupac)
                         {
-                            std::cout<<" Vasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje."<<std::endl;
-                            std::cout <<"   >ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
+                            std::cout<<" \nVasa kupovina je odobrena, ugovor je generisan i spreman za potpisivanje."<<std::endl;
+                            std::cout <<"   > ID nekretnine: " << nekretnina << ", a ugovor se cuva pod nazivom: " << "nekretnina"+nekretnina << std::endl;
                         }
                     }
                     
