@@ -168,7 +168,6 @@ void Korisnik::zavedi_najam()
             {
                 dostupnostStr = "2";
                 std::cout << "Uspjesno ste potvrdili najam." << std::endl;
-                std::cout << "Uspjesno ste potvrdili kupovinu." << std::endl;
                 auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
                 std::tm *tmNow = std::localtime(&time);
                 char buffer[20]; // dovoljno velik bafer za formatiranje
