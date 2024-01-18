@@ -439,95 +439,85 @@ void Korisnik::azuriranje_informacija_o_nekretnini()
 void Korisnik::prikaziListu(std::string korisnickoIme)
 {
     std::ifstream inputFile2("generisane_liste.txt");
-        int redniBroj = 1;
-        std::string novaLinija1, naziv, zadatak, ime, ind;
+    int redniBroj = 1;
+    std::string novaLinija1, naziv, zadatak, ime, ind;
 
-        while (std::getline(inputFile2, novaLinija1))
+    while (std::getline(inputFile2, novaLinija1))
+    {
+        std::istringstream iss(novaLinija1);
+        std::getline(iss, naziv, ',');
+        std::getline(iss, zadatak, ',');
+        std::getline(iss, ime, ',');
+        std::getline(iss, ind);
+        if (korisnickoIme == ime && ind == "0")
         {
-            std::istringstream iss(novaLinija1);
-            std::getline(iss, naziv, ',');
-            std::getline(iss, zadatak, ',');
-            std::getline(iss, ime, ',');
-            std::getline(iss, ind);
-            if (korisnickoIme == ime)
-            {
-                std::cout << "[" << redniBroj << "]. " << naziv << ", " << zadatak <<", "<<ind<< std::endl;
-                redniBroj++;
-            }
-        }
-        inputFile2.close();
+            std::cout << "[" << redniBroj << "]. " << naziv << ", " << zadatak << std::endl;
+            
+        }redniBroj++;
+    }
+    inputFile2.close();
 }
+#include <limits>
 void Korisnik::azurirajListu(std::string korisnickoIme)
 {
+    int bp;
+    while (true)
     {
         prikaziListu(korisnickoIme);
-        int bp;
+
         std::cout << "Unesite broj zadatka koji zelite uraditi ili 0 za kraj: " << std::endl;
         std::cin >> bp;
-        std::cin.ignore();
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (bp == 0)
         {
             std::cout << "Ažuriranje zadataka je završeno." << std::endl;
             return;
         }
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::ifstream inputFile5("generisane_liste.txt");
-        std::ofstream tempFile("temp_poslate.txt");
+        std::string komentar;
+        std::cout << "Unesi komentar: ";
+        std::getline(std::cin, komentar);
 
-        if (!inputFile5.is_open() || !tempFile.is_open())
-        {
-            std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
-            return;
-        }
-
-        int redniBroj1 = 1;
-        std::string novaLinija;
-        std::string naziv1, zadatak1, ime1, ind1;
-
-        while (std::getline(inputFile5, novaLinija))
-        {
-            std::istringstream iss(novaLinija);
-            std::getline(iss, naziv1, ',');
-            std::getline(iss, zadatak1, ',');
-            std::getline(iss, ime1, ',');
-            std::getline(iss, ind1);
-
-            if (korisnickoIme == ime)
+        
+            std::ifstream inputFile5("generisane_liste.txt");
+            std::ofstream tempFile("temp_poslate.txt");
+            //std::ofstream completedFile("uradjeni_zadaci.txt", std::ios::app);
+            if (!inputFile5.is_open() || !tempFile.is_open())
             {
+                std::cerr << "Greska prilikom otvaranja datoteka." << std::endl;
+                return;
+            }
 
-                std::string komentar;
-                std::cout << "Unesi komentar: ";
-                std::getline(std::cin, komentar);
+            int redniBroj1 = 1;
+            std::string novaLinija;
+            std::string naziv1, zadatak1, ime1, ind1;
 
-                ind1 = komentar;
+            while (std::getline(inputFile5, novaLinija))
+            {
+                std::istringstream iss(novaLinija);
+                std::getline(iss, naziv1, ',');
+                std::getline(iss, zadatak1, ',');
+                std::getline(iss, ime1, ',');
+                std::getline(iss, ind1);
 
+                if (korisnickoIme == ime1 && ind1 == "0")
+                {
+                    if (redniBroj1 == bp)
+                    {
+                        ind1 = komentar;
+                        //completedFile << novaLinija << std::endl;
+                    }
+                }
                 tempFile << naziv1 << "," << zadatak1 << "," << ime1 << "," << ind1 << std::endl;
 
                 redniBroj1++;
             }
-            else
-                tempFile << naziv1 << "," << zadatak1 << "," << ime1 << "," << ind1 << std::endl;
-        }
 
-        inputFile5.close();
-        tempFile.close();
-
-        // Opciono: Obrisati staru datoteku i preimenovati novu
-        std::remove("generisane_liste.txt");
-        std::rename("temp_poslate.txt", "generisane_liste.txt");
-
-        /* if (std::remove("generisane_liste.txt") != 0)
-         {
-             perror("Greška prilikom brisanja originalne datoteke");
-             return;
-         }
-
-         if (std::rename("temp_poslate.txt", "generisane_liste.txt") != 0)
-         {
-             perror("Greška prilikom preimenovanja privremene datoteke");
-             return;
-         }
-         std::cout << "Zadatak je uspjesno azuriran" << std::endl;
-     */
+            inputFile5.close();
+            tempFile.close();
+            //completedFile.close();
+            std::remove("generisane_liste.txt");
+            std::rename("temp_poslate.txt", "generisane_liste.txt");
+        
     }
 }
