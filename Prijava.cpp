@@ -145,8 +145,8 @@ void Korisnik::prijaviSe()
                         std::cout << "4. Generisanje izvjestaja o stanju racuna" << std::endl;
                         std::cout << "\nUNESITE REDNI BROJ ZELJENE OPCIJE:" << std::endl;
                         std::cin >> ind3;
-                        // if (ind3 == "3")
-                        //  genersanje_izvjestaja_o_prihodima_i_rashodima();
+                         if (ind3 == "3")
+                          genersanje_izvjestaja_o_prihodima_i_rashodima();
                     }
                     else if (ind2 == "LISTA")
                     {
