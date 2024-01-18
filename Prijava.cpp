@@ -182,8 +182,8 @@ void Korisnik::prijaviSe()
                             genersanje_izvjestaja_o_prihodima_i_rashodima();
                         else if (ind3 == "4")
                             generisanje_izvjestaja_o_stanju_racuna();
-                       // else if (ind3 == "1")
-                         //   generisanje_izjestaja_o_transakcijama();
+                       else if (ind3 == "1")
+                          generisanje_izjestaja_o_transakcijama();
                     }
                     else if (ind2 == "LISTA")
                     {
