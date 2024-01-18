@@ -100,12 +100,9 @@ void Korisnik::kupovina()
 }
 
 
-
 void Korisnik::zavedi_kupovina()
 {
     int bp;
-    std::cout << "Unesite broj ponude koju zelite registrovati: ";
-    std::cin >> bp;
 
     std::ifstream inputFile2("kupovina_nekretnine.txt");
     std::ofstream outputFile("nekretnine.txt", std::ios::app);
@@ -118,14 +115,34 @@ void Korisnik::zavedi_kupovina()
     }
 
     int redniBroj = 1;
-    std::string novaLinija1;
+    std::string linija;
+    while (std::getline(inputFile2, linija))
+    {
+        std::cout << redniBroj << ": " << linija << std::endl;
+        redniBroj++;
+    }
 
+    std::cout << "Unesite broj ponude koju zelite odobriti: ";
+    std::cin >> bp;
+
+    // Ponovno otvaranje datoteke kako bi se postavio file pointer na početak
+    inputFile2.close();
+    inputFile2.open("kupovina_nekretnine.txt");
+
+    if (!inputFile2.is_open())
+    {
+        std::cerr << "Greska prilikom ponovnog otvaranja datoteke." << std::endl;
+        return;
+    }
+  bool ok=false;
+    redniBroj = 1;
+    std::string novaLinija1;
+  
     while (std::getline(inputFile2, novaLinija1))
     {
         std::istringstream iss(novaLinija1);
         if (redniBroj == bp)
         {
-
             std::string immm, prezzz, id, tip, adresa, vlasnik, opis, svrha, dostupnostStr;
             double povrsina, cijena;
             int brojSoba;
@@ -145,9 +162,11 @@ void Korisnik::zavedi_kupovina()
             iss.ignore();
             std::getline(iss, svrha, ',');
             std::getline(iss, dostupnostStr);
+            ok=true;
+            
             if (dostupnostStr == "1")
-
                 dostupnostStr = "2";
+
             outputFile << id << "," << tip << "," << adresa << "," << vlasnik << "," << povrsina << "," << brojSoba << "," << opis << "," << cijena << "," << svrha << ',' << dostupnostStr << std::endl;
         }
         else
@@ -156,6 +175,9 @@ void Korisnik::zavedi_kupovina()
         }
         redniBroj++;
     }
+    if(!ok)
+    std::cout<<"Unijeli ste pogresan broj."<<std::endl;
+
     inputFile2.close();
     outputFile.close();
     tempFile.close();
@@ -163,5 +185,4 @@ void Korisnik::zavedi_kupovina()
     std::remove("kupovina_nekretnine.txt");
     std::rename("temp_poslate_ponude.txt", "kupovina_nekretnine.txt");
 
-    std::cout << "Zahtjev za kupovinu je uspjesno odobren." << std::endl;
 }
