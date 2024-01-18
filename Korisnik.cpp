@@ -614,7 +614,7 @@ void Korisnik::generisanje_izjestaja_o_transakcijama()
 
     if (!file.is_open())
     {
-        std::cerr << "Greska prilikom otvaranja datoteke 'prihodi_rashodi.txt'." << std::endl;
+        std::cerr << "Greska prilikom otvaranja datoteke 'transakcije.txt'." << std::endl;
         return;
     }
 
